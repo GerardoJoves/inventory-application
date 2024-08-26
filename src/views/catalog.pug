@@ -1,0 +1,16 @@
+extends layout.pug
+
+block content
+  main
+    div
+      h1= title
+      section
+        form
+          input(type='search' placeholder='Search')
+          button(type='submit') Search
+
+    div
+      ul
+        each game in games
+          li: a(href='/games/' + game.id)= game.title
+      
