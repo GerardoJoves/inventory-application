@@ -5,12 +5,11 @@ block content
     div
       h1= title
       section
-        form
+        form(method='GET' action='/catalog/developers')
           input(type='search' placeholder='Search')
           button(type='submit') Search
 
     div
       ul
-        each game in games
-          li: a(href='/catalog/games/' + game.id)= game.title
-      
+        each dev in developers
+          li: a(href='/catalog/developers/' + dev.id)= dev.name
