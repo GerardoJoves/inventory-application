@@ -1,10 +1,16 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import db from '../db/queries.js';
 
-const gamesListGet = asyncHandler(async (_req, res: Response) => {
-  const games = await db.getGames();
-  res.render('catalog', { title: 'Games List', games });
+const gamesListGet = asyncHandler(async (req: Request, res: Response) => {
+  let games;
+  if (req.params.genreId) {
+    games = await db.getGamesByGenre(parseInt(req.params.genreId));
+    res.render('catalog', { title: games.genre.name, games: games.arr });
+  } else {
+    games = await db.getGames();
+    res.render('catalog', { title: 'Games List', games: games.arr });
+  }
 });
 
 const developersListGet = asyncHandler(async (_req, res: Response) => {
