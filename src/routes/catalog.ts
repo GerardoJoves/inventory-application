@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import gameController from '../controllers/gameController.js';
+import catalogController from '../controllers/catalogController.js';
 
 const router = Router();
 
-router.get('/', gameController.gamesListGet);
-router.get('/developers', gameController.developersListGet);
-router.get('/genres', gameController.genresListGet);
-router.get('/genres/:genreId', gameController.gamesListByGenreGet);
-router.get('/developers/:devId', gameController.gamesListByDeveloperGet);
+router.get('/', catalogController.gamesListGet);
+router.get('/developers', catalogController.developersListGet);
+router.get('/genres', catalogController.genresListGet);
+router.get('/genres/:genreId', catalogController.gamesListByGenreGet);
+router.get('/developers/:devId', catalogController.gamesListByDeveloperGet);
+router.get('/:gameId', catalogController.gameDetailsGet);
 
 export default router;

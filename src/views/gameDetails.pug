@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+  div
+    h1= game.title
+    ul
+      each genre in game.genres
+        li: a(href='/catalog/genres/' + genre.id)= genre.name
+    ul
+      each dev in game.developers
+        li: a(href='/catalog/developers/' + dev.id)= dev.name
+    h2 Summary
+    p= game.description
+    p Release Date: #{game.release_date.toDateString()}

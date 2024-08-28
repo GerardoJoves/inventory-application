@@ -13,6 +13,11 @@ const gamesListGet = [
   }),
 ];
 
+const gameDetailsGet = asyncHandler(async (req: Request, res: Response) => {
+  const game = await db.getGameDetails(parseInt(req.params.gameId));
+  res.render('gameDetails', { title: game.title, game });
+});
+
 const gamesListByGenreGet = asyncHandler(
   async (req: Request, res: Response) => {
     const games = await db.getGamesByGenre(parseInt(req.params.genreId));
@@ -43,4 +48,5 @@ export default {
   genresListGet,
   gamesListByGenreGet,
   gamesListByDeveloperGet,
+  gameDetailsGet,
 };

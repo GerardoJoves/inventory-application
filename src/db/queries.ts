@@ -6,6 +6,12 @@ interface Game {
   title: string;
 }
 
+interface FullGame extends Game {
+  price: number;
+  description: string;
+  release_date: Date;
+}
+
 interface Genre {
   id: number;
   name: string;
@@ -68,6 +74,26 @@ const getGamesByDeveloper = async (devId: number) => {
   };
 };
 
+const getGameDetails = async (gameId: number) => {
+  const gameSQL = 'SELECT * FROM games WHERE id = $1';
+  const genresSQL =
+    'SELECT id, name FROM genres JOIN game_genre ON genres.id = genre_id WHERE game_id = $1';
+  const devSQL =
+    'SELECT id, name FROM developers JOIN game_developer ON developers.id = developer_id WHERE game_id = $1';
+  const [
+    {
+      rows: [game],
+    },
+    { rows: genres },
+    { rows: developers },
+  ] = await Promise.all([
+    pool.query<FullGame>(gameSQL, [gameId]),
+    pool.query<Genre>(genresSQL, [gameId]),
+    pool.query<Developer>(devSQL, [gameId]),
+  ]);
+  return { ...game, genres, developers };
+};
+
 const getDevelopers = async () => {
   const SQL = 'SELECT * FROM developers';
   const { rows } = await pool.query<Developer>(SQL);
@@ -86,4 +112,5 @@ export default {
   getGenres,
   getGamesByGenre,
   getGamesByDeveloper,
+  getGameDetails,
 };
