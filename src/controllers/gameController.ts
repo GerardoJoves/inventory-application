@@ -8,12 +8,7 @@ const gamesListGet = [
   searchQueryRules,
   asyncHandler(async (req: Request, res: Response) => {
     const { search } = matchedData<{ search?: string }>(req);
-    let games;
-    if (search) {
-      games = await db.getGames(search);
-    } else {
-      games = await db.getGames();
-    }
+    const games = search ? await db.getGames(search) : await db.getGames();
     res.render('catalog', { title: 'Games List', games: games.arr });
   }),
 ];
