@@ -1,3 +1,4 @@
+import { QueryConfig } from 'pg';
 import pool from './pool.js';
 
 interface Game {
@@ -15,9 +16,17 @@ interface Developer {
   name: string;
 }
 
-const getGames = async () => {
-  const SQL = 'SELECT id, title FROM games';
-  const games = await pool.query<Game>(SQL);
+const getGames = async (searchTerm?: string) => {
+  let query: QueryConfig = {
+    text: 'SELECT id, title FROM games',
+  };
+  if (searchTerm) {
+    query = {
+      text: 'SELECT id, title FROM games WHERE LOWER(title) LIKE $1',
+      values: [`%${searchTerm.toLocaleLowerCase()}%`],
+    };
+  }
+  const games = await pool.query<Game>(query);
   return { arr: games.rows };
 };
 

@@ -1,17 +1,29 @@
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import db from '../db/queries.js';
+import { matchedData } from 'express-validator';
+import searchQueryRules from '../middleware/validation/searchQueryRules.js';
 
-const gamesListGet = asyncHandler(async (req: Request, res: Response) => {
-  let games;
-  if (req.params.genreId) {
-    games = await db.getGamesByGenre(parseInt(req.params.genreId));
-    res.render('catalog', { title: games.genre.name, games: games.arr });
-  } else {
-    games = await db.getGames();
+const gamesListGet = [
+  searchQueryRules,
+  asyncHandler(async (req: Request, res: Response) => {
+    const { search } = matchedData<{ search?: string }>(req);
+    let games;
+    if (search) {
+      games = await db.getGames(search);
+    } else {
+      games = await db.getGames();
+    }
     res.render('catalog', { title: 'Games List', games: games.arr });
-  }
-});
+  }),
+];
+
+const gamesListByGenreGet = asyncHandler(
+  async (req: Request, res: Response) => {
+    const games = await db.getGamesByGenre(parseInt(req.params.genreId));
+    res.render('catalog', { title: games.genre.name, games: games.arr });
+  },
+);
 
 const developersListGet = asyncHandler(async (_req, res: Response) => {
   const developers = await db.getDevelopers();
@@ -27,4 +39,5 @@ export default {
   gamesListGet,
   developersListGet,
   genresListGet,
+  gamesListByGenreGet,
 };

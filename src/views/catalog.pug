@@ -5,8 +5,8 @@ block content
     div
       h1= title
       section
-        form
-          input(type='search' placeholder='Search')
+        form(method='GET' action='/catalog')
+          input(type='search' name='search' placeholder='Search')
           button(type='submit') Search
 
     div

@@ -6,5 +6,6 @@ const router = Router();
 router.get('/', gameController.gamesListGet);
 router.get('/developers', gameController.developersListGet);
 router.get('/genres', gameController.genresListGet);
-router.get('/genres/:genreId', gameController.gamesListGet);
+router.get('/genres/:genreId', gameController.gamesListByGenreGet);
+
 export default router;
