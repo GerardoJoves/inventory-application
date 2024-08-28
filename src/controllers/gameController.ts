@@ -25,6 +25,13 @@ const gamesListByGenreGet = asyncHandler(
   },
 );
 
+const gamesListByDeveloperGet = asyncHandler(
+  async (req: Request, res: Response) => {
+    const games = await db.getGamesByDeveloper(parseInt(req.params.devId));
+    res.render('catalog', { title: games.developer.name, games: games.arr });
+  },
+);
+
 const developersListGet = asyncHandler(async (_req, res: Response) => {
   const developers = await db.getDevelopers();
   res.render('developersList', { title: 'Developers List', developers });
@@ -40,4 +47,5 @@ export default {
   developersListGet,
   genresListGet,
   gamesListByGenreGet,
+  gamesListByDeveloperGet,
 };

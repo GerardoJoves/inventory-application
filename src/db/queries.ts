@@ -49,6 +49,25 @@ const getGamesByGenre = async (genreId: number) => {
   };
 };
 
+const getGamesByDeveloper = async (devId: number) => {
+  const genreQuery = {
+    text: 'SELECT * FROM developers WHERE id = $1',
+    values: [devId],
+  };
+  const gamesQuery = {
+    text: 'SELECT games.id, games.title FROM games JOIN game_developer ON games.id = game_id WHERE developer_id = $1',
+    values: [devId],
+  };
+  const [developer, games] = await Promise.all([
+    pool.query<Developer>(genreQuery),
+    pool.query<Game>(gamesQuery),
+  ]);
+  return {
+    developer: developer.rows[0],
+    arr: games.rows,
+  };
+};
+
 const getDevelopers = async () => {
   const SQL = 'SELECT * FROM developers';
   const { rows } = await pool.query<Developer>(SQL);
@@ -66,4 +85,5 @@ export default {
   getDevelopers,
   getGenres,
   getGamesByGenre,
+  getGamesByDeveloper,
 };
