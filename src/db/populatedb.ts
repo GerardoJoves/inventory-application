@@ -139,13 +139,15 @@ CREATE TABLE IF NOT EXISTS developers (
 CREATE TABLE IF NOT EXISTS game_genre (
   game_id INT, genre_id INT,
   FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE,
-  FOREIGN KEY (genre_id) REFERENCES genres(id) ON DELETE CASCADE
+  FOREIGN KEY (genre_id) REFERENCES genres(id) ON DELETE CASCADE,
+  PRIMARY KEY (game_id, genre_id)
 );
 
 CREATE TABLE IF NOT EXISTS game_developer (
   game_id INT, developer_id INT,
   FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE,
-  FOREIGN KEY (developer_id) REFERENCES developers(id) ON DELETE CASCADE
+  FOREIGN KEY (developer_id) REFERENCES developers(id) ON DELETE CASCADE,
+  PRIMARY KEY (game_id, developer_id)
 );
 `;
 
