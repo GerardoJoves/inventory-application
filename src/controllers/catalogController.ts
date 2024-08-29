@@ -57,7 +57,10 @@ const createGamePost = [
   ...newGameRules,
   asyncHandler(async (req: Request, res: Response) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) res.status(400).end();
+    if (!errors.isEmpty()) {
+      res.status(400).end();
+      return;
+    }
     const newGame = matchedData<NewGame>(req);
     const gameId = await db.insertGame(newGame);
     res.redirect('/catalog/' + gameId);
@@ -72,7 +75,10 @@ const createGenrePost = [
   ...genreRules,
   asyncHandler(async (req: Request, res: Response) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) res.status(400).end();
+    if (!errors.isEmpty()) {
+      res.status(400).end();
+      return;
+    }
     const { name } = matchedData<{ name: string }>(req);
     await db.insertGenre(name);
     res.redirect('/catalog');
@@ -87,7 +93,10 @@ const createDeveloperPost = [
   ...developerRules,
   asyncHandler(async (req: Request, res: Response) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) res.status(400).end();
+    if (!errors.isEmpty()) {
+      res.status(400).end();
+      return;
+    }
     const { name } = matchedData<{ name: string }>(req);
     await db.insertDeveloper(name);
     res.redirect('/catalog');
