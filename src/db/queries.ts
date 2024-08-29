@@ -151,6 +151,24 @@ const insertGame = async (game: NewGame) => {
   return gameId;
 };
 
+const insertGenre = async (name: string) => {
+  const query = {
+    text: 'INSERT INTO genres (name) VALUES ($1) RETURNING id',
+    values: [name],
+  };
+  const { rows } = await pool.query<{ id: number }>(query);
+  return rows[0].id;
+};
+
+const insertDeveloper = async (name: string) => {
+  const query = {
+    text: 'INSERT INTO developers (name) VALUES ($1) RETURNING id',
+    values: [name],
+  };
+  const { rows } = await pool.query<{ id: number }>(query);
+  return rows[0].id;
+};
+
 export default {
   getGames,
   getDevelopers,
@@ -159,4 +177,6 @@ export default {
   getGamesByDeveloper,
   getGameDetails,
   insertGame,
+  insertDeveloper,
+  insertGenre,
 };

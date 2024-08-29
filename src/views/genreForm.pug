@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+  h1= title
+
+  form(method='POST')
+    section
+      label(for='name') Genre Name:
+      input(type='text' id='name' name='name' required)
+    
+    seciton
+      button(type='submit') Create Genre
+    

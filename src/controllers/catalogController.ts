@@ -4,6 +4,10 @@ import db, { NewGame } from '../db/queries.js';
 import { matchedData, validationResult } from 'express-validator';
 import searchQueryRules from '../middleware/validation/searchQueryRules.js';
 import newGameRules from '../middleware/validation/newGameRules.js';
+import {
+  genreRules,
+  developerRules,
+} from '../middleware/validation/genreDeveloperRules.js';
 
 const gamesListGet = [
   searchQueryRules,
@@ -60,6 +64,36 @@ const createGamePost = [
   }),
 ];
 
+const createGenreGet = (_req: Request, res: Response) => {
+  res.render('genreForm', { title: 'Create Genre' });
+};
+
+const createGenrePost = [
+  ...genreRules,
+  asyncHandler(async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) res.status(400).end();
+    const { name } = matchedData<{ name: string }>(req);
+    await db.insertGenre(name);
+    res.redirect('/catalog');
+  }),
+];
+
+const createDeveloperGet = (_req: Request, res: Response) => {
+  res.render('developerForm', { title: 'Create Developer' });
+};
+
+const createDeveloperPost = [
+  ...developerRules,
+  asyncHandler(async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) res.status(400).end();
+    const { name } = matchedData<{ name: string }>(req);
+    await db.insertDeveloper(name);
+    res.redirect('/catalog');
+  }),
+];
+
 export default {
   gamesListGet,
   developersListGet,
@@ -69,4 +103,8 @@ export default {
   gameDetailsGet,
   createGameGet,
   createGamePost,
+  createDeveloperGet,
+  createDeveloperPost,
+  createGenreGet,
+  createGenrePost,
 };
