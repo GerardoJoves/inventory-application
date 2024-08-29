@@ -7,9 +7,16 @@ interface Game {
 }
 
 interface FullGame extends Game {
-  price: number;
   description: string;
   release_date: Date;
+}
+
+export interface NewGame {
+  title: string;
+  description: string;
+  release_date: Date;
+  genres: Genre[];
+  developers: Developer[];
 }
 
 interface Genre {
@@ -106,6 +113,44 @@ const getGenres = async () => {
   return rows;
 };
 
+const insertGame = async (game: NewGame) => {
+  let gameId: number;
+  const insertGameQuery = {
+    text: 'INSERT INTO games (title, description, release_date) VALUES ($1, $2, $3) RETURNING id',
+    values: [game.title, game.description, game.release_date],
+  };
+  const gameGenreEntries = [];
+  const gameDevEntries = [];
+  for (let i = 0; i < game.genres.length; i++) {
+    gameGenreEntries.push(`($1, $${i + 2})`);
+  }
+  for (let i = 0; i < game.developers.length; i++) {
+    gameDevEntries.push(`($1, $${i + 2})`);
+  }
+  const gameGenreSQL =
+    'INSERT INTO game_genre (game_id, genre_id) VALUES' +
+    gameGenreEntries.join(',');
+  const gameDevSQL =
+    'INSERT INTO game_developer (game_id, developer_id) VALUES' +
+    gameDevEntries.join(',');
+
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN');
+    const { rows } = await client.query<{ id: number }>(insertGameQuery);
+    gameId = rows[0].id;
+    await client.query(gameGenreSQL, [gameId, ...game.genres]);
+    await client.query(gameDevSQL, [gameId, ...game.developers]);
+    await client.query('COMMIT');
+  } catch (e) {
+    await client.query('ROLLBACK');
+    throw e;
+  } finally {
+    client.release();
+  }
+  return gameId;
+};
+
 export default {
   getGames,
   getDevelopers,
@@ -113,4 +158,5 @@ export default {
   getGamesByGenre,
   getGamesByDeveloper,
   getGameDetails,
+  insertGame,
 };

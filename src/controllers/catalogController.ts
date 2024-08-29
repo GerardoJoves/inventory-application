@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-import db from '../db/queries.js';
-import { matchedData } from 'express-validator';
+import db, { NewGame } from '../db/queries.js';
+import { matchedData, validationResult } from 'express-validator';
 import searchQueryRules from '../middleware/validation/searchQueryRules.js';
+import newGameRules from '../middleware/validation/newGameRules.js';
 
 const gamesListGet = [
   searchQueryRules,
@@ -42,6 +43,23 @@ const genresListGet = asyncHandler(async (_req, res: Response) => {
   res.render('genresList', { title: 'Genres List', genres });
 });
 
+const createGameGet = asyncHandler(async (_req, res: Response) => {
+  const genres = await db.getGenres();
+  const developers = await db.getDevelopers();
+  res.render('gameForm', { title: 'Create Game', genres, developers });
+});
+
+const createGamePost = [
+  ...newGameRules,
+  asyncHandler(async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) res.status(400).end();
+    const newGame = matchedData<NewGame>(req);
+    const gameId = await db.insertGame(newGame);
+    res.redirect('/catalog/' + gameId);
+  }),
+];
+
 export default {
   gamesListGet,
   developersListGet,
@@ -49,4 +67,6 @@ export default {
   gamesListByGenreGet,
   gamesListByDeveloperGet,
   gameDetailsGet,
+  createGameGet,
+  createGamePost,
 };

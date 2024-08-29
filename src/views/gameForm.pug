@@ -1,0 +1,36 @@
+extends layout.pug
+
+block content
+  h1= title
+  form(method='POST')
+    section
+      label(for='title') Game Title: 
+      input(type='text' id='title' name='title')
+
+    section
+      label(for='description') Description:
+      textarea(id='description', name='description')
+
+    seciton
+      label(for='release_date') Release Date:
+      input(type='date' id='release_date' name='release_date')
+    
+    section
+      fieldset
+        legend Game Genres
+        each genre in genres
+          div
+            input(type='checkbox' id=genre.id name='genres[]' value=genre.id)
+            label(for=genre.id)= genre.name
+
+    section
+      fieldset
+        legend Game Developers
+        each dev in developers
+          div
+            input(type='checkbox' id=dev.id name='developers[]' value=dev.id)
+            label(for=dev.id)= dev.name
+    
+    section
+      button(type='subimt') Create Game
+        
