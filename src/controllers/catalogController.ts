@@ -1,16 +1,10 @@
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import db, { NewGame } from '../db/queries.js';
-import { matchedData, validationResult } from 'express-validator';
-import searchQueryRules from '../middleware/validation/searchQueryRules.js';
-import newGameRules from '../middleware/validation/newGameRules.js';
-import {
-  genreRules,
-  developerRules,
-} from '../middleware/validation/genreDeveloperRules.js';
+import { matchedData, validationResult, body, query } from 'express-validator';
 
 const gamesListGet = [
-  searchQueryRules,
+  query('search').optional().isString(),
   asyncHandler(async (req: Request, res: Response) => {
     const { search } = matchedData<{ search?: string }>(req);
     const games = search ? await db.getGames(search) : await db.getGames();
@@ -54,7 +48,16 @@ const createGameGet = asyncHandler(async (_req, res: Response) => {
 });
 
 const createGamePost = [
-  ...newGameRules,
+  body('title', 'Title must not be empty').trim().isLength({ min: 1 }),
+  body('description', 'Description must not be empty')
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage('Description must be at least 10 characters long'),
+  body('genres').isArray(),
+  body('genres.*').isInt(),
+  body('developers').isArray(),
+  body('developers.*').isInt(),
+  body('release_date').isDate(),
   asyncHandler(async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -72,7 +75,7 @@ const createGenreGet = (_req: Request, res: Response) => {
 };
 
 const createGenrePost = [
-  ...genreRules,
+  body('name', 'Name must not be empty').trim().isLength({ min: 1 }),
   asyncHandler(async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -90,7 +93,7 @@ const createDeveloperGet = (_req: Request, res: Response) => {
 };
 
 const createDeveloperPost = [
-  ...developerRules,
+  body('name', 'Name must not be empty').trim().isLength({ min: 1 }),
   asyncHandler(async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

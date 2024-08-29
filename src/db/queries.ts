@@ -163,6 +163,49 @@ const insertGame = async (game: NewGame) => {
   return gameId;
 };
 
+const updateGame = async (gameId: number, game: NewGame) => {
+  const updateGameRecord = {
+    text: 'UPDATE games SET title = $2, description = $3, release_date = $4 WHERE id = $1',
+    values: [gameId, game.title, game.description, game.release_date],
+  };
+  const removeGameGenreStaleAssociations = {
+    text: `DELETE FROM game_genre 
+      WHERE game_id = $1 AND genre_id NOT IN (${game.genres.map((_, i) => `$${i + 2}`).join(',')})`,
+    values: [gameId, ...game.genres],
+  };
+  const removeGameDevStaleAssociations = {
+    text: `DELETE FROM game_developer 
+      WHERE game_id = $1 AND developer_id NOT IN (${game.developers.map((_, i) => `$${i + 2}`).join(',')})`,
+    values: [gameId, ...game.developers],
+  };
+  const addGameGenreAssociations = {
+    text: `INSERT INTO game_genre (game_id, genre_id)
+      VALUES ${game.genres.map((_, i) => `($1, $${i + 2})`).join(',')} ON CONFLICT DO NOTHING`,
+    values: [gameId, ...game.genres],
+  };
+  const addGameDevAssociations = {
+    text: `INSERT INTO game_developer (game_id, developer_id)
+      VALUES ${game.developers.map((_, i) => `($1, $${i + 2})`).join(',')} ON CONFLICT DO NOTHING`,
+    values: [gameId, ...game.developers],
+  };
+
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN');
+    await client.query(updateGameRecord);
+    await client.query(removeGameGenreStaleAssociations);
+    await client.query(removeGameDevStaleAssociations);
+    await client.query(addGameGenreAssociations);
+    await client.query(addGameDevAssociations);
+    await client.query('COMMIT');
+  } catch (e) {
+    await client.query('ROLLBACK');
+    throw e;
+  } finally {
+    client.release();
+  }
+};
+
 const insertGenre = async (name: string) => {
   const query = {
     text: 'INSERT INTO genres (name) VALUES ($1) RETURNING id',
@@ -191,4 +234,5 @@ export default {
   insertGame,
   insertDeveloper,
   insertGenre,
+  updateGame,
 };
