@@ -5,32 +5,45 @@ block content
   form(method='POST')
     section
       label(for='title') Game Title: 
-      input(type='text' id='title' name='title')
+      input(type='text' id='title' name='title' value=game ? game.title : null)
 
     section
       label(for='description') Description:
-      textarea(id='description', name='description')
+      textarea(id='description', name='description')= game ? game.description : null
 
     seciton
+      - const date_YYY_MM_DD = game ? game.release_date.toISOString().slice(0, 10) : null;
       label(for='release_date') Release Date:
-      input(type='date' id='release_date' name='release_date')
+      input(type='date' id='release_date' name='release_date' value=date_YYY_MM_DD)
     
     section
+      - const gameGenreIds = game ? game.genres.map(g => g.id) : [];
       fieldset
         legend Game Genres
         each genre in genres
           div
-            input(type='checkbox' id=genre.id name='genres[]' value=genre.id)
+            input(
+              type='checkbox'
+              id=genre.id name='genres[]'
+              value=genre.id
+              checked= gameGenreIds.includes(genre.id)
+            )
             label(for=genre.id)= genre.name
 
     section
+      - const gameDevIds = game ? game.developers.map(d => d.id) : [];
       fieldset
         legend Game Developers
         each dev in developers
           div
-            input(type='checkbox' id=dev.id name='developers[]' value=dev.id)
+            input(
+              type='checkbox'
+              id=dev.id name='developers[]'
+              value=dev.id
+              checked=gameDevIds.includes(dev.id)
+            )
             label(for=dev.id)= dev.name
     
     section
-      button(type='subimt') Create Game
+      button(type='subimt') !{game ? 'Update Game' : 'Create Game'}
         

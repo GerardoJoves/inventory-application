@@ -12,3 +12,4 @@ block content
     h2 Summary
     p= game.description
     p Release Date: #{game.release_date.toDateString()}
+    a(href='/catalog/update/' + game.id) Edit Game

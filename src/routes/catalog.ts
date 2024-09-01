@@ -23,6 +23,11 @@ router
 
 router.get('/genres/:genreId', catalogController.gamesListByGenreGet);
 router.get('/developers/:devId', catalogController.gamesListByDeveloperGet);
+router
+  .route('/update/:gameId')
+  .get(catalogController.updateGameGet)
+  .post(catalogController.updateGamePost);
+
 router.get('/:gameId', catalogController.gameDetailsGet);
 
 export default router;
