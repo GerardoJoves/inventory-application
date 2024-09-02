@@ -266,7 +266,27 @@ const updateDeveloper = async (id: number, { name }: { name: string }) => {
   await pool.query(query);
 };
 
+const getGenreById = async (id: number) => {
+  const query = {
+    text: 'SELECT * FROM genres WHERE id = $1',
+    values: [id],
+  };
+  const { rows } = await pool.query<Genre>(query);
+  return rows[0];
+};
+
+const getDeveloperById = async (id: number) => {
+  const query = {
+    text: 'SELECT * FROM developers WHERE id = $1',
+    values: [id],
+  };
+  const { rows } = await pool.query<Genre>(query);
+  return rows[0];
+};
+
 export default {
+  getGenreById,
+  getDeveloperById,
   updateDeveloper,
   updateGenre,
   getGames,

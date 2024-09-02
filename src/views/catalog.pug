@@ -4,13 +4,12 @@ block content
   main
     div
       h1= title
-      section
-        form(method='GET' action='/catalog')
-          input(type='search' name='search' placeholder='Search')
-          button(type='submit') Search
-
+      if genre
+        a(href='/catalog/genres/update/' + genre.id) Edit Genere
+      if developer
+        a(href='/catalog/developers/update/' + developer.id) Edit Developer
     div
-      ul
-        each game in games
-          li: a(href='/catalog/' + game.id)= game.title
+      include includes/searchBar.pug
+    div
+      include includes/gameList.pug
       

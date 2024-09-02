@@ -14,12 +14,20 @@ router
   .route('/developers/create')
   .get(catalogController.createDeveloperGet)
   .post(catalogController.createDeveloperPost);
+router
+  .route('/developers/update/developerId')
+  .get(catalogController.updateDeveloperGet)
+  .post(catalogController.updateDeveloperPost);
 
 router.get('/genres', catalogController.genresListGet);
 router
   .route('/genres/create')
   .get(catalogController.createGenreGet)
   .post(catalogController.createGenrePost);
+router
+  .route('/genres/update/:genreId')
+  .get(catalogController.updateGenreGet)
+  .post(catalogController.updateGenrePost);
 
 router.get('/genres/:genreId', catalogController.gamesListByGenreGet);
 router.get('/developers/:devId', catalogController.gamesListByDeveloperGet);
