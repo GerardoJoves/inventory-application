@@ -1,20 +1,17 @@
 import { PoolClient, QueryConfig } from 'pg';
 import pool from './pool.js';
 
-interface Game {
+interface GamePreview {
   id: number;
   title: string;
 }
 
-interface FullGame extends Game {
+interface FullGame extends GamePreview {
   description: string;
-  release_date: Date;
+  release_date?: Date;
 }
 
-export interface NewGame {
-  title: string;
-  description: string;
-  release_date: Date;
+export interface NewGame extends FullGame, Omit<GamePreview, 'id'> {
   genres: number[];
   developers: number[];
 }
@@ -39,7 +36,7 @@ const getGames = async (searchTerm?: string) => {
       values: [`%${searchTerm.toLocaleLowerCase()}%`],
     };
   }
-  const games = await pool.query<Game>(query);
+  const games = await pool.query<GamePreview>(query);
   return { arr: games.rows };
 };
 
@@ -54,7 +51,7 @@ const getGamesByGenre = async (genreId: number) => {
   };
   const [genre, games] = await Promise.all([
     pool.query<Genre>(genreQuery),
-    pool.query<Game>(gamesQuery),
+    pool.query<GamePreview>(gamesQuery),
   ]);
   return {
     genre: genre.rows[0],
@@ -73,7 +70,7 @@ const getGamesByDeveloper = async (devId: number) => {
   };
   const [developer, games] = await Promise.all([
     pool.query<Developer>(genreQuery),
-    pool.query<Game>(gamesQuery),
+    pool.query<GamePreview>(gamesQuery),
   ]);
   return {
     developer: developer.rows[0],
@@ -81,24 +78,53 @@ const getGamesByDeveloper = async (devId: number) => {
   };
 };
 
-const getGameDetails = async (gameId: number) => {
-  const gameSQL = 'SELECT * FROM games WHERE id = $1';
-  const genresSQL =
-    'SELECT id, name FROM genres JOIN game_genre ON genres.id = genre_id WHERE game_id = $1';
-  const devSQL =
-    'SELECT id, name FROM developers JOIN game_developer ON developers.id = developer_id WHERE game_id = $1';
-  const [
-    {
-      rows: [game],
-    },
-    { rows: genres },
-    { rows: developers },
-  ] = await Promise.all([
-    pool.query<FullGame>(gameSQL, [gameId]),
-    pool.query<Genre>(genresSQL, [gameId]),
-    pool.query<Developer>(devSQL, [gameId]),
-  ]);
-  return { ...game, genres, developers };
+const getGame = async (gameId: number) => {
+  const query = {
+    text: 'SELECT * FROM games WHERE id = $1',
+    values: [gameId],
+  };
+  const {
+    rows: [game],
+  } = await pool.query<FullGame>(query);
+  return game;
+};
+
+const getGameGenres = async (gameId: number) => {
+  const query = {
+    text: 'SELECT id, name FROM genres JOIN game_genre ON genres.id = genre_id WHERE game_id = $1',
+    values: [gameId],
+  };
+  const { rows: genres } = await pool.query<Genre>(query);
+  return genres;
+};
+
+const getGameDevelopers = async (gameId: number) => {
+  const query = {
+    text: 'SELECT id, name FROM developers JOIN game_developer ON developers.id = developer_id WHERE game_id = $1',
+    values: [gameId],
+  };
+  const { rows: developers } = await pool.query<Developer>(query);
+  return developers;
+};
+
+const getGameGenreIds = async (gameId: number) => {
+  const query = {
+    text: 'SELECT genre_id FROM game_genre WHERE game_id = $1',
+    values: [gameId],
+    rowMode: 'array',
+  };
+  const { rows } = await pool.query<[number]>(query);
+  return rows.flat();
+};
+
+const getGameDeveloperIds = async (gameId: number) => {
+  const query = {
+    text: 'SELECT developer_id FROM game_developer WHERE game_id = $1',
+    values: [gameId],
+    rowMode: 'array',
+  };
+  const { rows } = await pool.query<[number]>(query);
+  return rows.flat();
 };
 
 const getDevelopers = async () => {
@@ -143,7 +169,7 @@ const insertGame = async (game: NewGame) => {
   let gameId: number;
   const insertGameQuery = {
     text: 'INSERT INTO games (title, description, release_date) VALUES ($1, $2, $3) RETURNING id',
-    values: [game.title, game.description, game.release_date],
+    values: [game.title, game.description, game.release_date || null],
   };
 
   const client = await pool.connect();
@@ -166,7 +192,7 @@ const insertGame = async (game: NewGame) => {
 const updateGame = async (gameId: number, game: NewGame) => {
   const updateGameRecord = {
     text: 'UPDATE games SET title = $2, description = $3, release_date = $4 WHERE id = $1',
-    values: [gameId, game.title, game.description, game.release_date],
+    values: [gameId, game.title, game.description, game.release_date || null],
   };
   const removeGameGenreStaleAssociations = {
     text: `DELETE FROM game_genre 
@@ -206,7 +232,7 @@ const updateGame = async (gameId: number, game: NewGame) => {
   }
 };
 
-const insertGenre = async (name: string) => {
+const insertGenre = async ({ name }: { name: string }) => {
   const query = {
     text: 'INSERT INTO genres (name) VALUES ($1) RETURNING id',
     values: [name],
@@ -215,7 +241,7 @@ const insertGenre = async (name: string) => {
   return rows[0].id;
 };
 
-const insertDeveloper = async (name: string) => {
+const insertDeveloper = async ({ name }: { name: string }) => {
   const query = {
     text: 'INSERT INTO developers (name) VALUES ($1) RETURNING id',
     values: [name],
@@ -224,13 +250,35 @@ const insertDeveloper = async (name: string) => {
   return rows[0].id;
 };
 
+const updateGenre = async (id: number, { name }: { name: string }) => {
+  const query = {
+    text: 'UPDATE genres SET name = $2 WHERE id = $1',
+    values: [id, name],
+  };
+  await pool.query(query);
+};
+
+const updateDeveloper = async (id: number, { name }: { name: string }) => {
+  const query = {
+    text: 'UPDATE developers SET name = $2 WHERE id = $1',
+    values: [id, name],
+  };
+  await pool.query(query);
+};
+
 export default {
+  updateDeveloper,
+  updateGenre,
   getGames,
+  getGameDeveloperIds,
+  getGameGenreIds,
   getDevelopers,
   getGenres,
   getGamesByGenre,
   getGamesByDeveloper,
-  getGameDetails,
+  getGame,
+  getGameGenres,
+  getGameDevelopers,
   insertGame,
   insertDeveloper,
   insertGenre,

@@ -6,7 +6,15 @@ block content
   form(method='POST')
     section
       label(for='name') Genre Name:
-      input(type='text' id='name' name='name' required)
+      input(
+        type='text'
+        id='name'
+        name='name'
+        required
+        value= values && values.name ? values.name : null
+      )
+      if errors && errors.name
+        span= errors.name.msg
     
     seciton
       button(type='submit') Create Genre

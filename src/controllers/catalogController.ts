@@ -7,13 +7,12 @@ const gameValidation = [
   body('title', 'Title must not be empty').trim().isLength({ min: 1 }),
   body('description', 'Description must not be empty')
     .trim()
-    .isLength({ min: 1 })
-    .withMessage('Description must be at least 10 characters long'),
-  body('genres').isArray(),
-  body('genres.*').isInt(),
-  body('developers').isArray(),
-  body('developers.*').isInt(),
-  body('release_date').isDate(),
+    .isLength({ min: 1 }),
+  body('genres', 'At least one genre must be selected').isArray(),
+  body('genres.*').toInt().isInt(),
+  body('developers', 'At least one developer must be selected').isArray(),
+  body('developers.*').toInt().isInt(),
+  body('release_date').isDate().optional({ values: 'falsy' }),
 ];
 
 const gamesListGet = [
@@ -26,8 +25,13 @@ const gamesListGet = [
 ];
 
 const gameDetailsGet = asyncHandler(async (req: Request, res: Response) => {
-  const game = await db.getGameDetails(parseInt(req.params.gameId));
-  res.render('gameDetails', { title: game.title, game });
+  const id = parseInt(req.params.gameId);
+  const [game, genres, developers] = await Promise.all([
+    db.getGame(id),
+    db.getGameGenres(id),
+    db.getGameDevelopers(id),
+  ]);
+  res.render('gameDetails', { title: game.title, game, genres, developers });
 });
 
 const gamesListByGenreGet = asyncHandler(
@@ -63,13 +67,22 @@ const createGameGet = asyncHandler(async (_req, res: Response) => {
 const createGamePost = [
   ...gameValidation,
   asyncHandler(async (req: Request, res: Response) => {
+    const values = matchedData<NewGame>(req);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.status(400).end();
+      const genres = await db.getGenres();
+      const developers = await db.getDevelopers();
+      const locals = {
+        title: 'Create Game',
+        values,
+        genres,
+        developers,
+        errors: errors.mapped(),
+      };
+      res.render('gameForm', locals);
       return;
     }
-    const newGame = matchedData<NewGame>(req);
-    const gameId = await db.insertGame(newGame);
+    const gameId = await db.insertGame(values);
     res.redirect('/catalog/' + gameId);
   }),
 ];
@@ -81,13 +94,18 @@ const createGenreGet = (_req: Request, res: Response) => {
 const createGenrePost = [
   body('name', 'Name must not be empty').trim().isLength({ min: 1 }),
   asyncHandler(async (req: Request, res: Response) => {
+    const values = matchedData<{ name: string }>(req);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.status(400).end();
+      const locals = {
+        title: 'Create Genre',
+        values,
+        errors: errors.mapped(),
+      };
+      res.render('genreForm', locals);
       return;
     }
-    const { name } = matchedData<{ name: string }>(req);
-    await db.insertGenre(name);
+    await db.insertGenre(values);
     res.redirect('/catalog');
   }),
 ];
@@ -99,24 +117,44 @@ const createDeveloperGet = (_req: Request, res: Response) => {
 const createDeveloperPost = [
   body('name', 'Name must not be empty').trim().isLength({ min: 1 }),
   asyncHandler(async (req: Request, res: Response) => {
+    const values = matchedData<{ name: string }>(req);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.status(400).end();
+      const locals = {
+        title: 'Create Genre',
+        values,
+        errors: errors.mapped(),
+      };
+      res.render('genreForm', locals);
       return;
     }
-    const { name } = matchedData<{ name: string }>(req);
-    await db.insertDeveloper(name);
+    await db.insertDeveloper(values);
     res.redirect('/catalog');
   }),
 ];
 
 const updateGameGet = [
   asyncHandler(async (req: Request, res: Response) => {
-    const gameId = parseInt(req.params.gameId);
-    const game = await db.getGameDetails(gameId);
-    const genres = await db.getGenres();
-    const developers = await db.getDevelopers();
-    res.render('gameForm', { title: 'Update Game', game, genres, developers });
+    const id = parseInt(req.params.gameId);
+    const [game, gameGenreIds, gameDeveloperIds, genres, developers] =
+      await Promise.all([
+        db.getGame(id),
+        db.getGameGenreIds(id),
+        db.getGameDeveloperIds(id),
+        db.getGenres(),
+        db.getDevelopers(),
+      ]);
+    const values = {
+      ...game,
+      genres: gameGenreIds,
+      developers: gameDeveloperIds,
+    };
+    res.render('gameForm', {
+      title: 'Update Game',
+      values,
+      genres,
+      developers,
+    });
   }),
 ];
 
@@ -124,8 +162,22 @@ const updateGamePost = [
   ...gameValidation,
   asyncHandler(async (req: Request, res: Response) => {
     const gameId = parseInt(req.params.gameId);
-    const game = matchedData<NewGame>(req);
-    await db.updateGame(gameId, game);
+    const values = matchedData<NewGame>(req);
+    const errors = validationResult(req);
+    if (!errors.isEmpty) {
+      const genres = await db.getGenres();
+      const developers = await db.getDevelopers();
+      const locals = {
+        title: 'Update Game',
+        game: values,
+        genres,
+        developers,
+        errors: errors.mapped(),
+      };
+      res.render('gameForm', locals);
+      return;
+    }
+    await db.updateGame(gameId, values);
     res.redirect(`/catalog/${gameId}`);
   }),
 ];
