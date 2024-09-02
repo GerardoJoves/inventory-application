@@ -149,30 +149,28 @@ const createDeveloperPost = [
   }),
 ];
 
-const updateGameGet = [
-  asyncHandler(async (req: Request, res: Response) => {
-    const id = parseInt(req.params.gameId);
-    const [game, gameGenreIds, gameDeveloperIds, genres, developers] =
-      await Promise.all([
-        db.getGame(id),
-        db.getGameGenreIds(id),
-        db.getGameDeveloperIds(id),
-        db.getGenres(),
-        db.getDevelopers(),
-      ]);
-    const values = {
-      ...game,
-      genres: gameGenreIds,
-      developers: gameDeveloperIds,
-    };
-    res.render('gameForm', {
-      title: 'Update Game',
-      values,
-      genres,
-      developers,
-    });
-  }),
-];
+const updateGameGet = asyncHandler(async (req: Request, res: Response) => {
+  const id = parseInt(req.params.gameId);
+  const [game, gameGenreIds, gameDeveloperIds, genres, developers] =
+    await Promise.all([
+      db.getGame(id),
+      db.getGameGenreIds(id),
+      db.getGameDeveloperIds(id),
+      db.getGenres(),
+      db.getDevelopers(),
+    ]);
+  const values = {
+    ...game,
+    genres: gameGenreIds,
+    developers: gameDeveloperIds,
+  };
+  res.render('gameForm', {
+    title: 'Update Game',
+    values,
+    genres,
+    developers,
+  });
+});
 
 const updateGamePost = [
   ...gameValidation,
