@@ -41,37 +41,49 @@ const gamesListGet = [
   }),
 ];
 
-const gameDetailsGet = asyncHandler(async (req: Request, res: Response) => {
-  const id = parseInt(req.params.gameId);
-  const [game, genres, developers] = await Promise.all([
-    db.getGame(id),
-    db.getGameGenres(id),
-    db.getGameDevelopers(id),
-  ]);
-  res.render('gameDetails', { title: game.title, game, genres, developers });
-});
+const gameDetailsGet = [
+  param('gameId').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { gameId: id } = matchedData<{ gameId: number }>(req);
+    if (isNaN(id)) throw new BadRquestError();
+    const [game, genres, developers] = await Promise.all([
+      db.getGame(id),
+      db.getGameGenres(id),
+      db.getGameDevelopers(id),
+    ]);
+    if (!game) throw new NotFoundError();
+    res.render('gameDetails', { title: game.title, game, genres, developers });
+  }),
+];
 
-const gamesListByGenreGet = asyncHandler(
-  async (req: Request, res: Response) => {
-    const games = await db.getGamesByGenre(parseInt(req.params.genreId));
-    res.render('catalog', {
+const gamesListByGenreGet = [
+  param('genreId').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { genreId: id } = matchedData<{ genreId: number }>(req);
+    if (isNaN(id)) throw new BadRquestError();
+    const games = await db.getGamesByGenre(id);
+    if (!games.genre) throw new NotFoundError();
+    const locals = {
       title: games.genre.name,
       games: games.arr,
       genre: games.genre,
-    });
-  },
-);
+    };
+    res.render('catalog', locals);
+  }),
+];
 
-const gamesListByDeveloperGet = asyncHandler(
-  async (req: Request, res: Response) => {
-    const games = await db.getGamesByDeveloper(parseInt(req.params.devId));
+const gamesListByDeveloperGet = [
+  param('developerId').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { developerId: id } = matchedData<{ developerId: number }>(req);
+    const games = await db.getGamesByDeveloper(id);
     res.render('catalog', {
       title: games.developer.name,
       games: games.arr,
       developer: games.developer,
     });
-  },
-);
+  }),
+];
 
 const developersListGet = asyncHandler(async (_req, res: Response) => {
   const developers = await db.getDevelopers();
@@ -158,35 +170,44 @@ const createDeveloperPost = [
   }),
 ];
 
-const updateGameGet = asyncHandler(async (req: Request, res: Response) => {
-  const id = parseInt(req.params.gameId);
-  const [game, gameGenreIds, gameDeveloperIds, genres, developers] =
-    await Promise.all([
-      db.getGame(id),
-      db.getGameGenreIds(id),
-      db.getGameDeveloperIds(id),
-      db.getGenres(),
-      db.getDevelopers(),
-    ]);
-  const values = {
-    ...game,
-    genres: gameGenreIds,
-    developers: gameDeveloperIds,
-  };
-  res.render('gameForm', {
-    title: 'Update Game',
-    values,
-    genres,
-    developers,
-  });
-});
+const updateGameGet = [
+  param('gameId').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { gameId: id } = matchedData<{ gameId: number }>(req);
+    if (isNaN(id)) throw new BadRquestError();
+    const game = await db.getGame(id);
+    if (!game) throw new NotFoundError();
+    const [gameGenreIds, gameDeveloperIds, genres, developers] =
+      await Promise.all([
+        db.getGameGenreIds(id),
+        db.getGameDeveloperIds(id),
+        db.getGenres(),
+        db.getDevelopers(),
+      ]);
+    const values = {
+      ...game,
+      genres: gameGenreIds,
+      developers: gameDeveloperIds,
+    };
+    res.render('gameForm', {
+      title: 'Update Game',
+      values,
+      genres,
+      developers,
+    });
+  }),
+];
 
 const updateGamePost = [
   ...gameValidation,
+  param('gameId').toInt().isInt(),
   asyncHandler(async (req: Request, res: Response) => {
-    const gameId = parseInt(req.params.gameId);
-    const values = matchedData<NewGame>(req);
     const errors = validationResult(req);
+    const mappedErrors = errors.mapped();
+    if (mappedErrors.gameId) throw new BadRquestError();
+    const { gameId: id, ...values } = matchedData<NewGame & { gameId: number }>(
+      req,
+    );
     if (!errors.isEmpty) {
       const genres = await db.getGenres();
       const developers = await db.getDevelopers();
@@ -200,22 +221,31 @@ const updateGamePost = [
       res.render('gameForm', locals);
       return;
     }
-    await db.updateGame(gameId, values);
-    res.redirect(`/catalog/${gameId}`);
+    await db.updateGame(id, values);
+    res.redirect(`/catalog/${id}`);
   }),
 ];
 
-const updateGenreGet = asyncHandler(async (req: Request, res: Response) => {
-  const id = parseInt(req.params.genreId);
-  const genre = await db.getGenreById(id);
-  res.render('genreForm', { title: 'Update Genre', values: genre });
-});
+const updateGenreGet = [
+  param('genreId').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { genreId: id } = matchedData<{ genreId: number }>(req);
+    if (isNaN(id)) throw new BadRquestError();
+    const genre = await db.getGenreById(id);
+    if (!genre) throw new NotFoundError();
+    res.render('genreForm', { title: 'Update Genre', values: genre });
+  }),
+];
 
 const updateGenrePost = [
   ...genreValidation,
+  param('genreId').toInt().isInt(),
   asyncHandler(async (req: Request, res: Response) => {
-    const id = parseInt(req.params.genreId);
-    const values = matchedData<{ name: string }>(req);
+    const { genreId: id } = matchedData<{ genreId: number }>(req, {
+      locations: ['params'],
+    });
+    const values = matchedData<{ name: string }>(req, { locations: ['body'] });
+    if (isNaN(id)) throw new BadRquestError();
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const locals = {
@@ -231,23 +261,33 @@ const updateGenrePost = [
   }),
 ];
 
-const updateDeveloperGet = asyncHandler(async (req: Request, res: Response) => {
-  const id = parseInt(req.params.developerId);
-  const genre = await db.getDeveloperById(id);
-  res.render('genreForm', { title: 'Update Developer', values: genre });
-});
+const updateDeveloperGet = [
+  param('developerId').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { developerId: id } = matchedData<{ developerId: number }>(req);
+    if (isNaN(id)) throw new BadRquestError();
+    const dev = await db.getDeveloperById(id);
+    if (!dev) throw new NotFoundError();
+    res.render('developerForm', { title: 'Update Developer', values: dev });
+  }),
+];
 
 const updateDeveloperPost = [
   ...developerValidation,
+  param('developerId').toInt().isInt(),
   asyncHandler(async (req: Request, res: Response) => {
-    const id = parseInt(req.params.genreId);
-    const values = matchedData<{ name: string }>(req);
     const errors = validationResult(req);
+    const mappedErrors = errors.mapped();
+    if (mappedErrors.developerId) throw new BadRquestError();
+    const { developerId: id, ...values } = matchedData<{
+      developerId: number;
+      name: string;
+    }>(req);
     if (!errors.isEmpty()) {
       const locals = {
         title: 'Update Developer',
         values,
-        errros: errors.mapped(),
+        errros: mappedErrors,
       };
       res.render('developerForm', locals);
       return;

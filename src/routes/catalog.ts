@@ -34,7 +34,10 @@ router.post('/genres/delete', catalogController.deleteGenrePost);
 router.get('/genres/delete/:id', catalogController.deleteGenreGet);
 
 router.get('/genres/:genreId', catalogController.gamesListByGenreGet);
-router.get('/developers/:devId', catalogController.gamesListByDeveloperGet);
+router.get(
+  '/developers/:developerId',
+  catalogController.gamesListByDeveloperGet,
+);
 router
   .route('/update/:gameId')
   .get(catalogController.updateGameGet)

@@ -252,10 +252,12 @@ const insertDeveloper = async ({ name }: { name: string }) => {
 
 const updateGenre = async (id: number, { name }: { name: string }) => {
   const query = {
-    text: 'UPDATE genres SET name = $2 WHERE id = $1',
+    text: 'UPDATE genres SET name = $2 WHERE id = $1 RETURNING id',
     values: [id, name],
   };
-  await pool.query(query);
+  const { rows } = await pool.query<{ id: number }>(query);
+  if (!rows[0]) return;
+  return rows[0].id;
 };
 
 const deleteGenre = async (id: number) => {
@@ -294,10 +296,12 @@ const countGamesByDeveloper = async (id: number) => {
 
 const updateDeveloper = async (id: number, { name }: { name: string }) => {
   const query = {
-    text: 'UPDATE developers SET name = $2 WHERE id = $1',
+    text: 'UPDATE developers SET name = $2 WHERE id = $1 RETURNING id',
     values: [id, name],
   };
-  await pool.query(query);
+  const { rows } = await pool.query<{ id: number }>(query);
+  if (!rows[0]) return;
+  return rows[0].id;
 };
 
 const getGenreById = async (id: number) => {
