@@ -15,7 +15,7 @@ router
   .get(catalogController.createDeveloperGet)
   .post(catalogController.createDeveloperPost);
 router
-  .route('/developers/update/developerId')
+  .route('/developers/update/:developerId')
   .get(catalogController.updateDeveloperGet)
   .post(catalogController.updateDeveloperPost);
 router.post('/developers/delete', catalogController.deleteDeveloperPost);
