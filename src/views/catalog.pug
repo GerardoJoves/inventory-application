@@ -5,9 +5,11 @@ block content
     div
       h1= title
       if genre
-        a(href='/catalog/genres/update/' + genre.id) Edit Genere
+        a(href='/catalog/genres/update/' + genre.id) Edit Genre
+        a(href='/catalog/genres/delete/' + genre.id) Delete Genre
       if developer
         a(href='/catalog/developers/update/' + developer.id) Edit Developer
+        a(href='/catalog/developers/delete/' + developer.id) Edit Developer
     div
       include includes/searchBar.pug
     div

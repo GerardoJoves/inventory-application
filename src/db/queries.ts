@@ -258,6 +258,40 @@ const updateGenre = async (id: number, { name }: { name: string }) => {
   await pool.query(query);
 };
 
+const deleteGenre = async (id: number) => {
+  const query = {
+    text: 'DELETE FROM genres WHERE id = $1',
+    values: [id],
+  };
+  await pool.query(query);
+};
+
+const deleteDeveloper = async (id: number) => {
+  const query = {
+    text: 'DELETE FROM developers WHERE id = $1',
+    values: [id],
+  };
+  await pool.query(query);
+};
+
+const countGamesByGenre = async (id: number) => {
+  const query = {
+    text: 'SELECT COUNT(*) AS count FROM game_genre WHERE genre_id = $1',
+    values: [id],
+  };
+  const { rows } = await pool.query<{ count: number }>(query);
+  return rows[0].count;
+};
+
+const countGamesByDeveloper = async (id: number) => {
+  const query = {
+    text: 'SELECT COUNT(*) AS count FROM game_developer WHERE developer_id = $1',
+    values: [id],
+  };
+  const { rows } = await pool.query<{ count: number }>(query);
+  return rows[0].count;
+};
+
 const updateDeveloper = async (id: number, { name }: { name: string }) => {
   const query = {
     text: 'UPDATE developers SET name = $2 WHERE id = $1',
@@ -284,7 +318,31 @@ const getDeveloperById = async (id: number) => {
   return rows[0];
 };
 
+const getGenre = async (id: number) => {
+  const query = {
+    text: 'SELECT * FROM genres WHERE id = $1',
+    values: [id],
+  };
+  const { rows } = await pool.query<Genre>(query);
+  return rows[0];
+};
+
+const getDeveloper = async (id: number) => {
+  const query = {
+    text: 'SELECT * FROM developers WHERE id = $1',
+    values: [id],
+  };
+  const { rows } = await pool.query<Developer>(query);
+  return rows[0];
+};
+
 export default {
+  getGenre,
+  getDeveloper,
+  countGamesByDeveloper,
+  countGamesByGenre,
+  deleteDeveloper,
+  deleteGenre,
   getGenreById,
   getDeveloperById,
   updateDeveloper,

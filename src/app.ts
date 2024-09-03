@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'node:path';
 import indexRouter from './routes/index.js';
 import catalogRouter from './routes/catalog.js';
+import errorHandler from './middlewares/errorHandler.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,5 +19,7 @@ app.use(express.json());
 // Routes
 app.use('/', indexRouter);
 app.use('/catalog', catalogRouter);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`App running on port ${PORT}`));

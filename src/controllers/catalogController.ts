@@ -1,7 +1,16 @@
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import db, { NewGame } from '../db/queries.js';
-import { matchedData, validationResult, body, query } from 'express-validator';
+import {
+  matchedData,
+  validationResult,
+  body,
+  query,
+  param,
+} from 'express-validator';
+import NotFoundError from '../helpers/errors/NotFoundError.js';
+import BadRquestError from '../helpers/errors/BadRequestError.js';
+import ConflictError from '../helpers/errors/ConflictError.js';
 
 const gameValidation = [
   body('title', 'Title must not be empty').trim().isLength({ min: 1 }),
@@ -248,7 +257,69 @@ const updateDeveloperPost = [
   }),
 ];
 
+const deleteGenreGet = [
+  param('id').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { id } = matchedData<{ id: number }>(req);
+    if (typeof id != 'number') throw new BadRquestError();
+    const genre = await db.getGenre(id);
+    if (!genre) throw new NotFoundError();
+    const gamesCount = await db.countGamesByGenre(id);
+    const locals = {
+      title: 'Delete Genre',
+      genre,
+      gamesCount,
+    };
+    res.render('genreDelete', locals);
+  }),
+];
+
+const deleteGenrePost = [
+  body('id').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { id } = matchedData<{ id: number }>(req);
+    if (!id) throw new NotFoundError();
+    const gamesCount = await db.countGamesByGenre(id);
+    if (gamesCount > 0) throw new ConflictError();
+    await db.deleteGenre(id);
+    res.redirect('/catalog');
+  }),
+];
+
+const deleteDeveloperGet = [
+  param('id').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { id } = matchedData<{ id: number }>(req);
+    if (typeof id != 'number') throw new BadRquestError();
+    const dev = await db.getDeveloper(id);
+    if (!dev) throw new NotFoundError();
+    const gamesCount = await db.countGamesByDeveloper(id);
+    const locals = {
+      title: 'Delete Genre',
+      developer: dev,
+      gamesCount,
+    };
+    res.render('developerDelete', locals);
+  }),
+];
+
+const deleteDeveloperPost = [
+  body('id').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { id } = matchedData<{ id: number }>(req);
+    if (!id) throw new NotFoundError();
+    const gamesCount = await db.countGamesByDeveloper(id);
+    if (gamesCount > 0) throw new ConflictError();
+    await db.deleteDeveloper(id);
+    res.redirect('/catalog');
+  }),
+];
+
 export default {
+  deleteDeveloperGet,
+  deleteDeveloperPost,
+  deleteGenreGet,
+  deleteGenrePost,
   updateDeveloperGet,
   updateDeveloperPost,
   updateGenreGet,
