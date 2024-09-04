@@ -56,6 +56,31 @@ const gameDetailsGet = [
   }),
 ];
 
+const deleteGameGet = [
+  param('gameId').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { gameId: id } = matchedData<{ gameId: number }>(req);
+    if (isNaN(id)) throw new BadRquestError();
+    const game = await db.getGame(id);
+    if (!game) throw new NotFoundError();
+    const locals = {
+      title: 'Delete Game',
+      game,
+    };
+    res.render('gameDelete', locals);
+  }),
+];
+
+const deleteGamePost = [
+  body('id').toInt().isInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const { id } = matchedData<{ id: number }>(req);
+    if (isNaN(id)) throw new BadRquestError();
+    await db.deleteGame(id);
+    res.redirect('/catalog');
+  }),
+];
+
 const gamesListByGenreGet = [
   param('genreId').toInt().isInt(),
   asyncHandler(async (req: Request, res: Response) => {
@@ -356,6 +381,8 @@ const deleteDeveloperPost = [
 ];
 
 export default {
+  deleteGameGet,
+  deleteGamePost,
   deleteDeveloperGet,
   deleteDeveloperPost,
   deleteGenreGet,

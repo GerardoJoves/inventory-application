@@ -38,10 +38,13 @@ router.get(
   '/developers/:developerId',
   catalogController.gamesListByDeveloperGet,
 );
+
+router.post('/delete', catalogController.deleteGamePost);
 router
   .route('/update/:gameId')
   .get(catalogController.updateGameGet)
   .post(catalogController.updateGamePost);
+router.get('/delete/:gameId', catalogController.deleteGameGet);
 
 router.get('/:gameId', catalogController.gameDetailsGet);
 

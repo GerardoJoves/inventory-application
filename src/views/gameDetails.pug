@@ -14,3 +14,4 @@ block content
     if game.release_date
       p Release Date: #{game.release_date.toDateString()}
     a(href='/catalog/update/' + game.id) Edit Game
+    a(href='/catalog/delete/' + game.id) Delete Game

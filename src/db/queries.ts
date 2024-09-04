@@ -340,7 +340,16 @@ const getDeveloper = async (id: number) => {
   return rows[0];
 };
 
+const deleteGame = async (id: number) => {
+  const query = {
+    text: 'DELETE FROM games WHERE id = $1',
+    values: [id],
+  };
+  await pool.query(query);
+};
+
 export default {
+  deleteGame,
   getGenre,
   getDeveloper,
   countGamesByDeveloper,
