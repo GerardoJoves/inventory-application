@@ -1,8 +1,10 @@
 import express from 'express';
 import path from 'node:path';
 import indexRouter from './routes/index.js';
-import catalogRouter from './routes/catalog.js';
 import errorHandler from './middlewares/errorHandler.js';
+import gamesRouter from './routes/games.js';
+import genersRouter from './routes/genres.js';
+import developersRouter from './routes/developers.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,7 +20,9 @@ app.use(express.json());
 
 // Routes
 app.use('/', indexRouter);
-app.use('/catalog', catalogRouter);
+app.use('/games', gamesRouter);
+app.use('/genres', genersRouter);
+app.use('/developers', developersRouter);
 
 app.use(errorHandler);
 

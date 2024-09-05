@@ -5,11 +5,11 @@ block content
     div
       h1= title
       section
-        form(method='GET' action='/catalog/genres')
+        form(method='GET' action='/genres')
           input(type='search' placeholder='Search')
           button(type='submit') Search
 
     div
       ul
         each genre in genres
-          li: a(href='/catalog/genres/' + genre.id)= genre.name
+          li: a(href=`/genres/${genre.id}/games`)= genre.name

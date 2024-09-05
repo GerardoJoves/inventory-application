@@ -4,12 +4,12 @@ block content
   main
     div
       h1= title
-      if genre
-        a(href='/catalog/genres/update/' + genre.id) Edit Genre
-        a(href='/catalog/genres/delete/' + genre.id) Delete Genre
-      if developer
-        a(href='/catalog/developers/update/' + developer.id) Edit Developer
-        a(href='/catalog/developers/delete/' + developer.id) Edit Developer
+      if filter && filter.type === 'genre'
+        a(href=`/genres/${filter.id}/update`) Edit Genre
+        a(href=`/genres/${filter.id}/delete`) Delete Genre
+      if filter && filter.type === 'developer'
+        a(href=`/developers/${filter.id}/update`) Edit Developer
+        a(href=`/developers/${filter.id}/delete`) Delete Developer
     div
       include includes/searchBar.pug
     div

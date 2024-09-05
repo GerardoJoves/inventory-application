@@ -6,10 +6,10 @@ block content
     if gamesCount > 0
       p 
         | Genre 
-        a(href='/catalog/genres/' + genre.id)= genre.name
+        a(href=`/genres/${genre.id}/games`)= genre.name
         |  cannot be deleted since #{gamesCount} games reference it.
     else
       p Are you sure you want to delete this genre?
-      form(method='POST' action='/catalog/genres/delete')
+      form(method='POST' action='/genres/delete')
         input(type='hidden' name='id' value= genre.id)
         button(type='submit') Confirm

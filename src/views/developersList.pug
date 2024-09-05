@@ -12,4 +12,4 @@ block content
     div
       ul
         each dev in developers
-          li: a(href='/catalog/developers/' + dev.id)= dev.name
+          li: a(href=`/developers/${dev.id}/games`)= dev.name

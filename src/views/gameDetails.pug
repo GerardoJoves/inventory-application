@@ -5,13 +5,13 @@ block content
     h1= game.title
     ul
       each genre in genres
-        li: a(href='/catalog/genres/' + genre.id)= genre.name
+        li: a(href=`/genres/${genre.id}/games`)= genre.name
     ul
       each dev in developers
-        li: a(href='/catalog/developers/' + dev.id)= dev.name
+        li: a(href=`/developers/${dev.id}/games`)= dev.name
     h2 Summary
     p= game.description
     if game.release_date
       p Release Date: #{game.release_date.toDateString()}
-    a(href='/catalog/update/' + game.id) Edit Game
-    a(href='/catalog/delete/' + game.id) Delete Game
+    a(href=`/games/${game.id}/update`) Edit Game
+    a(href=`/games/${game.id}/delete`) Delete Game

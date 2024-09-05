@@ -6,10 +6,10 @@ block content
     if gamesCount > 0
       p 
         | Developer 
-        a(href='/catalog/developers/' developer.id)= developer.name
+        a(href=`/developers/${dev.id}/games`)= developer.name
         |  cannot be deleted since #{gamesCount} games reference it.
     else
       p Are you sure you want to delete this developer
-      form(method='POST' action='/catalog/developers/delete')
+      form(method='POST' action='/developers/delete')
         input(type='hidden' name='id' value= developer.id)
         button(type='submit') Confirm

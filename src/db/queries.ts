@@ -6,12 +6,14 @@ interface GamePreview {
   title: string;
 }
 
-interface FullGame extends GamePreview {
+interface FullGame {
+  id: number;
+  title: string;
   description: string;
   release_date?: Date;
 }
 
-export interface NewGame extends FullGame, Omit<GamePreview, 'id'> {
+export interface NewGame extends Omit<FullGame, 'id'> {
   genres: number[];
   developers: number[];
 }
@@ -54,7 +56,7 @@ const getGamesByGenre = async (genreId: number) => {
     pool.query<GamePreview>(gamesQuery),
   ]);
   return {
-    genre: genre.rows[0],
+    filter: genre.rows[0],
     arr: games.rows,
   };
 };
@@ -73,7 +75,7 @@ const getGamesByDeveloper = async (devId: number) => {
     pool.query<GamePreview>(gamesQuery),
   ]);
   return {
-    developer: developer.rows[0],
+    filter: developer.rows[0],
     arr: games.rows,
   };
 };
