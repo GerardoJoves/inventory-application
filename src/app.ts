@@ -5,6 +5,7 @@ import errorHandler from './middlewares/errorHandler.js';
 import gamesRouter from './routes/games.js';
 import genersRouter from './routes/genres.js';
 import developersRouter from './routes/developers.js';
+import NotFoundError from './helpers/errors/NotFoundError.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,11 @@ app.use('/', indexRouter);
 app.use('/games', gamesRouter);
 app.use('/genres', genersRouter);
 app.use('/developers', developersRouter);
+
+// Catch 404
+app.use((_req, _res) => {
+  throw new NotFoundError();
+});
 
 app.use(errorHandler);
 
