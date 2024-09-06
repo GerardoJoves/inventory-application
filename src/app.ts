@@ -3,7 +3,7 @@ import path from 'node:path';
 import indexRouter from './routes/index.js';
 import errorHandler from './middlewares/errorHandler.js';
 import gamesRouter from './routes/games.js';
-import genersRouter from './routes/genres.js';
+import genresRouter from './routes/genres.js';
 import developersRouter from './routes/developers.js';
 import NotFoundError from './helpers/errors/NotFoundError.js';
 
@@ -22,7 +22,7 @@ app.use(express.json());
 // Routes
 app.use('/', indexRouter);
 app.use('/games', gamesRouter);
-app.use('/genres', genersRouter);
+app.use('/genres', genresRouter);
 app.use('/developers', developersRouter);
 
 // Catch 404
