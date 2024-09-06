@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  min-height: 100%;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+body {
+  height: 100%;
+  background: #e3f2fd;
+  display: grid;
+  color: #35302d;
+  line-height: 1.6;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  border-radius: 50px;
+  text-align: center;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: #35302d;
+  padding: 1em 2em;
+}
+
+.sidebar {
+  width: 280px;
+  position: fixed;
+  height: 100%;
+  background-color: #35302d;
+  padding-bottom: 1em;
+  color: #dfdbd9;
+  overflow: auto;
+}
+
+.sidebar > .logo {
+  font-weight: 300;
+  font-size: 1.5em;
+  padding: 1em;
+  text-align: center;
+}
+
+.sidebar > .logo > span {
+  font-weight: 700;
+}
+
+.sidebar a {
+  display: block;
+  color: #dfdbd9;
+  padding: 1em 1.5em;
+  text-decoration: none;
+}
+
+.content {
+  margin-left: 280px;
+}
+
+main {
+  padding: 2em 3em;
+  overflow: auto;
+}
+
+body .content main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 300;
+  margin-bottom: 1em;
+  color: #35302d;
+}
+
+.searchContainer {
+  display: flex;
+  margin: 1em 0;
+}
+
+.searchContainer > input {
+  padding: 0.5em 1.5em;
+  background-color: transparent;
+  border-radius: 50px 0 0 50px;
+  border: 1px solid #35302d;
+  width: min(100%, 500px);
+}
+
+.searchContainer > input:focus {
+  border: 1px solid #35302d;
+  border-radius: 50px 0 0 50px;
+  outline: none;
+}
+
+.searchContainer > button {
+  padding: 0 1em;
+  border-radius: 0 50px 50px 0;
+  border-left: none;
+  background-color: #35302d;
+  border: none;
+  color: #dfdbd9;
+  font-weight: 700;
+}
+
+main ul.recordList a {
+  display: block;
+  padding: 1em 0;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid #cbcbcb;
+}
+
+.gameDetails > h2 {
+  margin: 1em 0;
+}
+
+.gameDetails h2 {
+  font-weight: 700;
+  font-size: 1em;
+}
+
+.gameDetails ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  overflow: hidden;
+}
+
+.gameDetails > p {
+  margin: 1em 0;
+}
+
+.gameDetails ul li a {
+  padding: 0.5em 1em;
+  width: max-content;
+  display: block;
+  color: #35302d;
+  border: 1px solid #35302d;
+  border-radius: 50px;
+  text-decoration: none;
+}
+
+.actions {
+  display: flex;
+  gap: 1em;
+}
+
+.actions a {
+  display: block;
+  color: #35302d;
+}
+
+.styledForm {
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 0.75rem;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.styledForm .formGroup {
+  margin-bottom: 1rem;
+}
+
+.styledForm .formGroup label {
+  font-weight: 500;
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.styledForm input:not([type='checkbox']),
+.styledForm textarea,
+.styledForm .dropdown .placeholder,
+.styledForm .dropdownContent {
+  width: 100%;
+  background-color: #f9fafb;
+  box-shadow: none;
+  border-radius: 0.25rem;
+  border: 1px solid #c0c4c9;
+  padding: 0.5rem;
+}
+
+.styledForm textarea {
+  height: 6rem;
+  resize: vertical;
+}
+
+.styledForm .dropdown {
+  position: relative;
+}
+
+.styledForm .dropdownContent {
+  visibility: hidden;
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  background-color: white;
+  z-index: 1;
+  max-height: 9rem;
+  overflow: auto;
+}
+
+.styledForm .formGroup small {
+  color: rgb(138, 0, 0);
+}
+
+.styledForm .dropdownContent label {
+  display: block;
+  margin-top: 10px;
+}
+
+.styledForm .dropdown .gapFiller {
+  position: absolute;
+  visibility: hidden;
+  height: 0.5rem;
+  top: 100%;
+  width: 100%;
+}
+
+.dropdown:hover .gapFiller {
+  visibility: visible;
+}
+
+.dropdown:hover .dropdownContent {
+  visibility: visible;
+}
+
+.styledForm .dropdownContent > label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.styledForm .dropdown .placeholder {
+  color: #858585;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    display: block;
+  }
+  .sidebar {
+    position: initial;
+    width: 100%;
+    text-align: center;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+}

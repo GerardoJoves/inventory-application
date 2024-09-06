@@ -2,7 +2,7 @@ extends layout.pug
 
 block content
   main
-    h1 Delete #{game.name}
+    h1.title Delete #{game.name}
     p Are you sure you want to delete this game?
     form(method='post' action='/games/delete')
       input(type='hidden' name='id' value= game.id)

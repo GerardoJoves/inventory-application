@@ -1,17 +1,23 @@
 extends layout.pug
 
 block content
-  div
-    h1= game.title
-    ul
-      each genre in genres
-        li: a(href=`/genres/${genre.id}/games`)= genre.name
-    ul
-      each dev in developers
-        li: a(href=`/developers/${dev.id}/games`)= dev.name
-    h2 Summary
-    p= game.description
-    if game.release_date
-      p Release Date: #{game.release_date.toDateString()}
-    a(href=`/games/${game.id}/update`) Edit Game
-    a(href=`/games/${game.id}/delete`) Delete Game
+  main
+    div.gameDetails
+      h1.title= game.title
+      h2 Summary
+      p.description= game.description
+      h2 Genres
+      ul.genres
+        each genre in genres
+          li: a(href=`/genres/${genre.id}/games`)= genre.name
+      h2 Developers
+      ul.developers
+        each dev in developers
+          li: a(href=`/developers/${dev.id}/games`)= dev.name
+      if game.release_date
+        p Release Date: #{game.release_date.toDateString()}
+      else
+        p Release Date: N/A
+      div.actions
+        a(href=`/games/${game.id}/update`) Edit Game
+        a(href=`/games/${game.id}/delete`) Delete Game

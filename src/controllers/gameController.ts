@@ -42,7 +42,7 @@ const gameListGet = [
   asyncHandler(async (req: Request, res: Response) => {
     const { search } = matchedData<{ search?: string }>(req);
     const games = search ? await db.getGames(search) : await db.getGames();
-    res.render('catalog', { title: 'Games List', games: games.arr });
+    res.render('catalog', { title: 'Game List', games: games.arr });
   }),
 ];
 

@@ -3,13 +3,11 @@ extends layout.pug
 block content
   main
     div
-      h1= title
-      section
-        form(method='GET' action='/catalog/developers')
-          input(type='search' placeholder='Search')
-          button(type='submit') Search
+      h1.title= title
+      div
+        include includes/searchBar.pug
 
     div
-      ul
+      ul.recordList
         each dev in developers
           li: a(href=`/developers/${dev.id}/games`)= dev.name

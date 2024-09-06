@@ -3,13 +3,15 @@ extends layout.pug
 block content
   main
     div
-      h1= title
+      h1.title= title
       if filter && filter.type === 'genre'
-        a(href=`/genres/${filter.id}/update`) Edit Genre
-        a(href=`/genres/${filter.id}/delete`) Delete Genre
+        div.actions
+          a(href=`/genres/${filter.id}/update`) Edit Genre
+          a(href=`/genres/${filter.id}/delete`) Delete Genre
       if filter && filter.type === 'developer'
-        a(href=`/developers/${filter.id}/update`) Edit Developer
-        a(href=`/developers/${filter.id}/delete`) Delete Developer
+        div.actions
+          a(href=`/developers/${filter.id}/update`) Edit Developer
+          a(href=`/developers/${filter.id}/delete`) Delete Developer
     div
       include includes/searchBar.pug
     div

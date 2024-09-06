@@ -3,13 +3,11 @@ extends layout.pug
 block content
   main
     div
-      h1= title
-      section
-        form(method='GET' action='/genres')
-          input(type='search' placeholder='Search')
-          button(type='submit') Search
+      h1.title= title
+      div
+        include includes/searchBar.pug
 
     div
-      ul
+      ul.recordList
         each genre in genres
           li: a(href=`/genres/${genre.id}/games`)= genre.name
