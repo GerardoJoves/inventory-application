@@ -121,6 +121,10 @@ body .content main {
   font-weight: 700;
 }
 
+main ul.recordList {
+  min-height: 300px;
+}
+
 main ul.recordList a {
   display: block;
   padding: 1em 0;
@@ -253,6 +257,34 @@ main ul.recordList a {
 
 .styledForm .dropdown .placeholder {
   color: #858585;
+}
+
+.paginationControl {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.paginationControl .pageLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  border: 0;
+  flex-basis: 3rem;
+  aspect-ratio: 1;
+  box-shadow: 0 2px 0 #35302d;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.paginationControl .pageLink.active {
+  color: white;
+  background-color: #35302d;
+}
+
+.paginationControl .pageLink:not(.active):hover {
+  background-color: #cbcbcb;
 }
 
 @media screen and (max-width: 700px) {

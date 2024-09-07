@@ -28,18 +28,19 @@ interface Developer {
   name: string;
 }
 
-const getGames = async (searchTerm?: string) => {
+const getGames = async (searchTerm = '', limit = 10, offset = 0) => {
   let query: QueryConfig = {
-    text: 'SELECT id, title FROM games',
+    text: 'SELECT id, title, COUNT(*) OVER() AS games_total FROM games LIMIT $1 OFFSET $2',
+    values: [limit, offset],
   };
   if (searchTerm) {
     query = {
-      text: 'SELECT id, title FROM games WHERE LOWER(title) LIKE $1',
-      values: [`%${searchTerm.toLocaleLowerCase()}%`],
+      text: 'SELECT id, title, COUNT(*) OVER() AS games_total FROM games WHERE LOWER(title) LIKE $1 LIMIT $2 OFFSET $3',
+      values: [`%${searchTerm.toLocaleLowerCase()}%`, limit, offset],
     };
   }
-  const games = await pool.query<GamePreview>(query);
-  return { arr: games.rows };
+  const res = await pool.query<GamePreview & { games_total: number }>(query);
+  return res.rows;
 };
 
 const getGamesByGenre = async (genreId: number) => {

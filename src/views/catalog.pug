@@ -16,4 +16,6 @@ block content
       include includes/searchBar.pug
     div
       include includes/gameList.pug
+      if totalPages > 1
+        include includes/paginationControl.pug
       

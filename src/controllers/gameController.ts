@@ -11,6 +11,11 @@ import db, { NewGame } from '../db/queries.js';
 import BadRequestError from '../helpers/errors/BadRequestError.js';
 import NotFoundError from '../helpers/errors/NotFoundError.js';
 
+type GamesQuery = {
+  search?: string;
+  page?: number;
+};
+
 const gameValidation = [
   body('title', 'Title must not be empty').trim().isLength({ min: 1 }),
   body('description', 'Description must not be empty')
@@ -39,10 +44,26 @@ const idValidationBody = [
 
 const gameListGet = [
   query('search').optional().isString(),
+  query('page')
+    .optional()
+    .isInt({ min: 1, allow_leading_zeroes: false })
+    .toInt(),
   asyncHandler(async (req: Request, res: Response) => {
-    const { search } = matchedData<{ search?: string }>(req);
-    const games = search ? await db.getGames(search) : await db.getGames();
-    res.render('catalog', { title: 'Game List', games: games.arr });
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) throw new BadRequestError();
+    const limit = 10;
+    const query = matchedData<GamesQuery>(req, { locations: ['query'] });
+    const offset = query.page ? (query.page - 1) * limit : 0;
+    const games = await db.getGames(query.search, limit, offset);
+    const totalPages = games[0] ? Math.ceil(games[0].games_total / limit) : 1;
+    const locals = {
+      title: 'Game List',
+      games,
+      query,
+      curPage: query.page || 1,
+      totalPages,
+    };
+    res.render('catalog', locals);
   }),
 ];
 
