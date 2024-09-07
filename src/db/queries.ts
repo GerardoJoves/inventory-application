@@ -30,54 +30,54 @@ interface Developer {
 
 const getGames = async (searchTerm = '', limit = 10, offset = 0) => {
   let query: QueryConfig = {
-    text: 'SELECT id, title, COUNT(*) OVER() AS games_total FROM games LIMIT $1 OFFSET $2',
+    text: 'SELECT id, title, COUNT(*) OVER() AS total_games FROM games LIMIT $1 OFFSET $2',
     values: [limit, offset],
   };
   if (searchTerm) {
     query = {
-      text: 'SELECT id, title, COUNT(*) OVER() AS games_total FROM games WHERE LOWER(title) LIKE $1 LIMIT $2 OFFSET $3',
+      text: 'SELECT id, title, COUNT(*) OVER() AS total_games FROM games WHERE LOWER(title) LIKE $1 LIMIT $2 OFFSET $3',
       values: [`%${searchTerm.toLocaleLowerCase()}%`, limit, offset],
     };
   }
-  const res = await pool.query<GamePreview & { games_total: number }>(query);
+  const res = await pool.query<GamePreview & { total_games: number }>(query);
   return res.rows;
 };
 
-const getGamesByGenre = async (genreId: number) => {
+const getGamesByGenre = async (genreId: number, limit = 10, offset = 0) => {
   const genreQuery = {
     text: 'SELECT * FROM genres WHERE id = $1',
     values: [genreId],
   };
   const gamesQuery = {
-    text: 'SELECT games.id, games.title FROM games JOIN game_genre ON games.id = game_id WHERE genre_id = $1',
-    values: [genreId],
+    text: 'SELECT games.id, games.title, COUNT(*) OVER() AS total_games FROM games JOIN game_genre ON games.id = game_id WHERE genre_id = $1 LIMIT $2 OFFSET $3',
+    values: [genreId, limit, offset],
   };
   const [genre, games] = await Promise.all([
     pool.query<Genre>(genreQuery),
-    pool.query<GamePreview>(gamesQuery),
+    pool.query<GamePreview & { total_games: number }>(gamesQuery),
   ]);
   return {
     filter: genre.rows[0],
-    arr: games.rows,
+    result: games.rows,
   };
 };
 
-const getGamesByDeveloper = async (devId: number) => {
+const getGamesByDeveloper = async (devId: number, limit = 10, offset = 0) => {
   const genreQuery = {
     text: 'SELECT * FROM developers WHERE id = $1',
     values: [devId],
   };
   const gamesQuery = {
-    text: 'SELECT games.id, games.title FROM games JOIN game_developer ON games.id = game_id WHERE developer_id = $1',
-    values: [devId],
+    text: 'SELECT games.id, games.title, COUNT(*) OVER() AS total_games FROM games JOIN game_developer ON games.id = game_id WHERE developer_id = $1 LIMIT $2 OFFSET $3',
+    values: [devId, limit, offset],
   };
   const [developer, games] = await Promise.all([
     pool.query<Developer>(genreQuery),
-    pool.query<GamePreview>(gamesQuery),
+    pool.query<GamePreview & { total_games: number }>(gamesQuery),
   ]);
   return {
     filter: developer.rows[0],
-    arr: games.rows,
+    result: games.rows,
   };
 };
 
@@ -130,15 +130,23 @@ const getGameDeveloperIds = async (gameId: number) => {
   return rows.flat();
 };
 
-const getDevelopers = async () => {
-  const SQL = 'SELECT * FROM developers';
-  const { rows } = await pool.query<Developer>(SQL);
+const getDevelopers = async (limit = 10, offset = 0) => {
+  const query = {
+    text: 'SELECT id, name, COUNT(*) OVER() AS total_developers FROM developers LIMIT $1 OFFSET $2',
+    values: [limit, offset],
+  };
+  const { rows } = await pool.query<Developer & { total_developers: number }>(
+    query,
+  );
   return rows;
 };
 
-const getGenres = async () => {
-  const SQL = 'SELECT * FROM genres';
-  const { rows } = await pool.query<Genre>(SQL);
+const getGenres = async (limit = 10, offset = 0) => {
+  const query = {
+    text: 'SELECT id, name, COUNT(*) OVER() AS total_genres FROM genres LIMIT $1 OFFSET $2',
+    values: [limit, offset],
+  };
+  const { rows } = await pool.query<Genre & { total_genres: number }>(query);
   return rows;
 };
 

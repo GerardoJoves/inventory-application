@@ -55,7 +55,7 @@ const gameListGet = [
     const query = matchedData<GamesQuery>(req, { locations: ['query'] });
     const offset = query.page ? (query.page - 1) * limit : 0;
     const games = await db.getGames(query.search, limit, offset);
-    const totalPages = games[0] ? Math.ceil(games[0].games_total / limit) : 1;
+    const totalPages = games[0] ? Math.ceil(games[0].total_games / limit) : 1;
     const locals = {
       title: 'Game List',
       games,
@@ -109,18 +109,27 @@ const deleteGamePost = [
 
 const gameListFilteredGet = (filterBy: 'developer' | 'genre') => [
   ...idValidationParam,
+  query('page')
+    .optional()
+    .isInt({ min: 1, allow_leading_zeroes: false })
+    .toInt(),
   asyncHandler(async (req: Request, res: Response) => {
-    const { id } = matchedData<{ id: number }>(req);
+    const { id, page } = matchedData<{ id: number; page: number }>(req);
     if (isNaN(id)) throw new BadRequestError();
-    const gameList =
+    const limit = 10;
+    const offset = page ? (page - 1) * limit : 0;
+    const { filter, result: games } =
       filterBy === 'developer'
-        ? await db.getGamesByDeveloper(id)
-        : await db.getGamesByGenre(id);
-    if (!gameList.filter) throw new NotFoundError();
+        ? await db.getGamesByDeveloper(id, limit, offset)
+        : await db.getGamesByGenre(id, limit, offset);
+    if (!filter) throw new NotFoundError();
+    const totalPages = games[0] ? Math.ceil(games[0].total_games / limit) : 1;
     const locals = {
-      title: gameList.filter.name,
-      filter: { type: filterBy, ...gameList.filter },
-      games: gameList.arr,
+      title: filter.name,
+      filter: { type: filterBy, ...filter },
+      games,
+      curPage: page || 1,
+      totalPages,
     };
     res.render('catalog', locals);
   }),

@@ -1,4 +1,10 @@
-import { body, param, matchedData, validationResult } from 'express-validator';
+import {
+  body,
+  param,
+  matchedData,
+  validationResult,
+  query,
+} from 'express-validator';
 import asyncHandler from 'express-async-handler';
 import { Request, Response } from 'express';
 import db from '../db/queries.js';
@@ -18,10 +24,30 @@ const idValidationBody = [
   body('id').isInt({ min: 0, allow_leading_zeroes: false }).toInt(),
 ];
 
-const developersListGet = asyncHandler(async (_req, res: Response) => {
-  const developers = await db.getDevelopers();
-  res.render('developersList', { title: 'Developers List', developers });
-});
+const developersListGet = [
+  query('page')
+    .optional()
+    .isInt({ min: 1, allow_leading_zeroes: false })
+    .toInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) throw new BadRequestError();
+    const { page } = matchedData<{ page: number }>(req);
+    const limit = 10;
+    const offset = page ? (page - 1) * limit : 0;
+    const developers = await db.getDevelopers(limit, offset);
+    const totalPages = developers[0]
+      ? Math.ceil(developers[0].total_developers / limit)
+      : 1;
+    const locals = {
+      title: 'Developer List',
+      developers,
+      curPage: page || 1,
+      totalPages,
+    };
+    res.render('developersList', locals);
+  }),
+];
 
 const createDeveloperGet = (_req: Request, res: Response) => {
   res.render('developerForm', { title: 'Create Developer' });

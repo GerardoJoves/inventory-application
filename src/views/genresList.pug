@@ -11,3 +11,5 @@ block content
       ul.recordList
         each genre in genres
           li: a(href=`/genres/${genre.id}/games`)= genre.name
+      if totalPages > 1
+        include includes/paginationControl.pug

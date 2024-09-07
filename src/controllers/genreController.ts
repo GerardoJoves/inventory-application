@@ -1,4 +1,10 @@
-import { body, param, matchedData, validationResult } from 'express-validator';
+import {
+  body,
+  param,
+  matchedData,
+  validationResult,
+  query,
+} from 'express-validator';
 import asyncHandler from 'express-async-handler';
 import { Request, Response } from 'express';
 import db from '../db/queries.js';
@@ -18,10 +24,30 @@ const genreValidation = [
   body('name', 'Name must not be empty').trim().isLength({ min: 1 }),
 ];
 
-const genreListGet = asyncHandler(async (_req, res: Response) => {
-  const genres = await db.getGenres();
-  res.render('genresList', { title: 'Genres List', genres });
-});
+const genreListGet = [
+  query('page')
+    .optional()
+    .isInt({ min: 1, allow_leading_zeroes: false })
+    .toInt(),
+  asyncHandler(async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) throw new BadRequestError();
+    const { page } = matchedData<{ page: number }>(req);
+    const limit = 10;
+    const offset = page ? (page - 1) * limit : 0;
+    const genres = await db.getGenres(limit, offset);
+    const totalPages = genres[0]
+      ? Math.ceil(genres[0].total_genres / limit)
+      : 1;
+    const locals = {
+      title: 'Genre List',
+      genres,
+      curPage: page || 1,
+      totalPages,
+    };
+    res.render('genresList', locals);
+  }),
+];
 
 const createGenreGet = (_req: Request, res: Response) => {
   res.render('genreForm', { title: 'Create Genre' });
