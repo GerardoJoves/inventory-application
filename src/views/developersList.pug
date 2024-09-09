@@ -5,11 +5,17 @@ block content
     div
       h1.title= title
       div
-        include includes/searchBar.pug
+        form(method='GET' action='/developers')
+          div.searchContainer
+            input(type='search' name='search' placeholder='Search developer')
+            button(type='submit') Search
 
     div
       ul.recordList
-        each dev in developers
-          li: a(href=`/developers/${dev.id}/games`)= dev.name
+        if developers.length > 0
+          each dev in developers
+            li: a(href=`/developers/${dev.id}/games`)= dev.name
+        else
+          li No results were found :(
       if totalPages > 1
         include includes/paginationControl.pug

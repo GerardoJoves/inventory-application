@@ -1,5 +1,9 @@
-import { PoolClient, QueryConfig } from 'pg';
+import { PoolClient } from 'pg';
 import pool from './pool.js';
+
+type Entity = 'games' | 'genres' | 'developers';
+
+type PaginatedData = (GamePreview | Genre | Developer) & { total: number };
 
 interface GamePreview {
   id: number;
@@ -28,18 +32,27 @@ interface Developer {
   name: string;
 }
 
-const getPaginatedGames = async (searchTerm = '', limit = 10, offset = 0) => {
-  let query: QueryConfig = {
-    text: 'SELECT id, title, COUNT(*) OVER() AS total_games FROM games LIMIT $1 OFFSET $2',
-    values: [limit, offset],
-  };
-  if (searchTerm) {
-    query = {
-      text: 'SELECT id, title, COUNT(*) OVER() AS total_games FROM games WHERE LOWER(title) LIKE $1 LIMIT $2 OFFSET $3',
-      values: [`%${searchTerm.toLocaleLowerCase()}%`, limit, offset],
-    };
+const getPaginated = async (
+  entity: Entity,
+  keyword = '',
+  limit = 10,
+  offset = 0,
+) => {
+  let text: string;
+  const values: (number | string)[] = [limit, offset];
+  if (keyword) values.push(`%${keyword}%`);
+  switch (entity) {
+    case 'games':
+      text = `SELECT id, title, COUNT(*) OVER() AS total FROM games ${keyword ? 'WHERE LOWER(title) LIKE LOWER($3)' : ''} LIMIT $1 OFFSET $2`;
+      break;
+    case 'developers':
+      text = `SELECT id, name, COUNT(*) OVER() AS total FROM developers ${keyword ? 'WHERE LOWER(name) LIKE LOWER($3)' : ''} LIMIT $1 OFFSET $2`;
+      break;
+    case 'genres':
+      text = `SELECT id, name, COUNT(*) OVER() AS total FROM genres ${keyword ? 'WHERE LOWER(name) LIKE LOWER($3)' : ''} LIMIT $1 OFFSET $2`;
+      break;
   }
-  const res = await pool.query<GamePreview & { total_games: number }>(query);
+  const res = await pool.query<PaginatedData>({ text, values });
   return res.rows;
 };
 
@@ -138,29 +151,9 @@ const getGameDeveloperIds = async (gameId: number) => {
   return rows.flat();
 };
 
-const getPaginatedDevelopers = async (limit = 10, offset = 0) => {
-  const query = {
-    text: 'SELECT id, name, COUNT(*) OVER() AS total_developers FROM developers LIMIT $1 OFFSET $2',
-    values: [limit, offset],
-  };
-  const { rows } = await pool.query<Developer & { total_developers: number }>(
-    query,
-  );
-  return rows;
-};
-
 const getAllDevelopers = async () => {
   const query = 'SELECT id, name FROM developers';
   const { rows } = await pool.query<Developer>(query);
-  return rows;
-};
-
-const getPaginatedGenres = async (limit = 10, offset = 0) => {
-  const query = {
-    text: 'SELECT id, name, COUNT(*) OVER() AS total_genres FROM genres LIMIT $1 OFFSET $2',
-    values: [limit, offset],
-  };
-  const { rows } = await pool.query<Genre & { total_genres: number }>(query);
   return rows;
 };
 
@@ -380,6 +373,7 @@ const deleteGame = async (id: number) => {
 };
 
 export default {
+  getPaginated,
   getAllDevelopers,
   getAllGenres,
   deleteGame,
@@ -393,11 +387,8 @@ export default {
   getDeveloperById,
   updateDeveloper,
   updateGenre,
-  getPaginatedGames,
   getGameDeveloperIds,
   getGameGenreIds,
-  getPaginatedDevelopers,
-  getPaginatedGenres,
   getPaginatedGamesByGenre,
   getPaginatedGamesByDeveloper,
   getGame,

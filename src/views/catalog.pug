@@ -13,7 +13,10 @@ block content
           a(href=`/developers/${filter.id}/update`) Edit Developer
           a(href=`/developers/${filter.id}/delete`) Delete Developer
     div
-      include includes/searchBar.pug
+      form(method='GET' action='/games')
+        div.searchContainer
+          input(type='search' name='search' placeholder='Search game')
+          button(type='submit') Search
     div
       include includes/gameList.pug
       if totalPages > 1

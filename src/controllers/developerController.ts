@@ -1,48 +1,35 @@
-import {
-  body,
-  param,
-  matchedData,
-  validationResult,
-  query,
-} from 'express-validator';
+import { matchedData, validationResult } from 'express-validator';
 import asyncHandler from 'express-async-handler';
 import { Request, Response } from 'express';
 import db from '../db/queries.js';
 import BadRequestError from '../helpers/errors/BadRequestError.js';
 import NotFoundError from '../helpers/errors/NotFoundError.js';
 import ConflictError from '../helpers/errors/ConflictError.js';
-
-const developerValidation = [
-  body('name', 'Name must not be empty').trim().isLength({ min: 1 }),
-];
-
-const idValidationParam = [
-  param('id').isInt({ min: 0, allow_leading_zeroes: false }).toInt(),
-];
-
-const idValidationBody = [
-  body('id').isInt({ min: 0, allow_leading_zeroes: false }).toInt(),
-];
+import validation from '../helpers/validation.js';
 
 const developersListGet = [
-  query('page')
-    .optional()
-    .isInt({ min: 1, allow_leading_zeroes: false })
-    .toInt(),
+  validation.validateQuerySearch(),
+  validation.validateQueryPage(),
   asyncHandler(async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) throw new BadRequestError();
-    const { page } = matchedData<{ page: number }>(req);
+    const query = matchedData<{ search: string; page: number }>(req);
     const limit = 10;
-    const offset = page ? (page - 1) * limit : 0;
-    const developers = await db.getPaginatedDevelopers(limit, offset);
+    const offset = query.page ? (query.page - 1) * limit : 0;
+    const developers = await db.getPaginated(
+      'developers',
+      query.search,
+      limit,
+      offset,
+    );
     const totalPages = developers[0]
-      ? Math.ceil(developers[0].total_developers / limit)
+      ? Math.ceil(developers[0].total / limit)
       : 1;
     const locals = {
       title: 'Developer List',
       developers,
-      curPage: page || 1,
+      query,
+      curPage: query.page || 1,
       totalPages,
     };
     res.render('developersList', locals);
@@ -54,7 +41,7 @@ const createDeveloperGet = (_req: Request, res: Response) => {
 };
 
 const createDeveloperPost = [
-  ...developerValidation,
+  validation.validateDeveloper(),
   asyncHandler(async (req: Request, res: Response) => {
     const values = matchedData<{ name: string }>(req);
     const errors = validationResult(req);
@@ -73,7 +60,7 @@ const createDeveloperPost = [
 ];
 
 const updateDeveloperGet = [
-  ...idValidationParam,
+  validation.validateParamId(),
   asyncHandler(async (req: Request, res: Response) => {
     const { id } = matchedData<{ id: number }>(req);
     if (isNaN(id)) throw new BadRequestError();
@@ -84,8 +71,8 @@ const updateDeveloperGet = [
 ];
 
 const updateDeveloperPost = [
-  ...developerValidation,
-  ...idValidationParam,
+  validation.validateDeveloper(),
+  validation.validateParamId(),
   asyncHandler(async (req: Request, res: Response) => {
     const { id, ...values } = matchedData<{ id: number; name: string }>(req);
     const errors = validationResult(req);
@@ -105,7 +92,7 @@ const updateDeveloperPost = [
 ];
 
 const deleteDeveloperGet = [
-  ...idValidationParam,
+  validation.validateParamId(),
   asyncHandler(async (req: Request, res: Response) => {
     const { id } = matchedData<{ id: number }>(req);
     if (typeof id != 'number') throw new BadRequestError();
@@ -122,7 +109,7 @@ const deleteDeveloperGet = [
 ];
 
 const deleteDeveloperPost = [
-  ...idValidationBody,
+  validation.validateBodyId(),
   asyncHandler(async (req: Request, res: Response) => {
     const { id } = matchedData<{ id: number }>(req);
     if (!id) throw new NotFoundError();

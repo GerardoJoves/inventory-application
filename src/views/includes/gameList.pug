@@ -1,3 +1,6 @@
 ul.recordList
-  each game in games
-    li: a(href='/games/' + game.id)= game.title
+  if games.length > 0
+    each game in games
+      li: a(href='/games/' + game.id)= game.title
+  else 
+    li No results were found :(

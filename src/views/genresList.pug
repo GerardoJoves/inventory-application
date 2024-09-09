@@ -5,11 +5,17 @@ block content
     div
       h1.title= title
       div
-        include includes/searchBar.pug
+        form(method='GET' action='/genres')
+          div.searchContainer
+            input(type='search' name='search' placeholder='Search genre')
+            button(type='submit') Search
 
     div
       ul.recordList
-        each genre in genres
-          li: a(href=`/genres/${genre.id}/games`)= genre.name
+        if genres.length > 0
+          each genre in genres
+            li: a(href=`/genres/${genre.id}/games`)= genre.name
+        else
+          li No results were found :(
       if totalPages > 1
         include includes/paginationControl.pug

@@ -1,61 +1,27 @@
-import {
-  body,
-  query,
-  param,
-  matchedData,
-  validationResult,
-} from 'express-validator';
+import { validationResult, matchedData } from 'express-validator';
 import asyncHandler from 'express-async-handler';
 import { Request, Response } from 'express';
 import db, { NewGame } from '../db/queries.js';
 import BadRequestError from '../helpers/errors/BadRequestError.js';
 import NotFoundError from '../helpers/errors/NotFoundError.js';
+import validation from '../helpers/validation.js';
 
 type GamesQuery = {
   search?: string;
   page?: number;
 };
 
-const gameValidation = [
-  body('title', 'Title must not be empty').trim().isLength({ min: 1 }),
-  body('description', 'Description must not be empty')
-    .trim()
-    .isLength({ min: 1 }),
-  body('genres', 'At least one genre must be selected').isArray({ min: 1 }),
-  body('genres.*').isInt({ min: 0, allow_leading_zeroes: false }).toInt(),
-  body('developers', 'At least one developer must be selected').isArray({
-    min: 1,
-  }),
-  body('developers.*').isInt({ min: 0, allow_leading_zeroes: false }).toInt(),
-  body('release_date')
-    .trim()
-    .isDate()
-    .customSanitizer((v: string) => new Date(v))
-    .optional({ values: 'falsy' }),
-];
-
-const idValidationParam = [
-  param('id').isInt({ min: 0, allow_leading_zeroes: false }).toInt(),
-];
-
-const idValidationBody = [
-  body('id').isInt({ min: 0, allow_leading_zeroes: false }),
-];
-
 const gameListGet = [
-  query('search').optional().isString(),
-  query('page')
-    .optional()
-    .isInt({ min: 1, allow_leading_zeroes: false })
-    .toInt(),
+  validation.validateQuerySearch(),
+  validation.validateQueryPage(),
   asyncHandler(async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) throw new BadRequestError();
     const limit = 10;
     const query = matchedData<GamesQuery>(req, { locations: ['query'] });
     const offset = query.page ? (query.page - 1) * limit : 0;
-    const games = await db.getPaginatedGames(query.search, limit, offset);
-    const totalPages = games[0] ? Math.ceil(games[0].total_games / limit) : 1;
+    const games = await db.getPaginated('games', query.search, limit, offset);
+    const totalPages = games[0] ? Math.ceil(games[0].total / limit) : 1;
     const locals = {
       title: 'Game List',
       games,
@@ -68,7 +34,7 @@ const gameListGet = [
 ];
 
 const gameDetailsGet = [
-  ...idValidationParam,
+  validation.validateParamId(),
   asyncHandler(async (req: Request, res: Response) => {
     const { id } = matchedData<{ id: number }>(req);
     if (isNaN(id)) throw new BadRequestError();
@@ -83,7 +49,7 @@ const gameDetailsGet = [
 ];
 
 const deleteGameGet = [
-  ...idValidationParam,
+  validation.validateParamId(),
   asyncHandler(async (req: Request, res: Response) => {
     const { id } = matchedData<{ id: number }>(req);
     if (isNaN(id)) throw new BadRequestError();
@@ -98,7 +64,7 @@ const deleteGameGet = [
 ];
 
 const deleteGamePost = [
-  ...idValidationBody,
+  validation.validateBodyId(),
   asyncHandler(async (req: Request, res: Response) => {
     const { id } = matchedData<{ id: number }>(req);
     if (isNaN(id)) throw new BadRequestError();
@@ -108,11 +74,8 @@ const deleteGamePost = [
 ];
 
 const gameListFilteredGet = (filterBy: 'developer' | 'genre') => [
-  ...idValidationParam,
-  query('page')
-    .optional()
-    .isInt({ min: 1, allow_leading_zeroes: false })
-    .toInt(),
+  validation.validateParamId(),
+  validation.validateQueryPage(),
   asyncHandler(async (req: Request, res: Response) => {
     const { id, page } = matchedData<{ id: number; page: number }>(req);
     if (isNaN(id)) throw new BadRequestError();
@@ -142,7 +105,7 @@ const createGameGet = asyncHandler(async (_req, res: Response) => {
 });
 
 const createGamePost = [
-  ...gameValidation,
+  ...validation.validateGame(),
   asyncHandler(async (req: Request, res: Response) => {
     const values = matchedData<NewGame>(req);
     const errors = validationResult(req);
@@ -165,7 +128,7 @@ const createGamePost = [
 ];
 
 const updateGameGet = [
-  ...idValidationParam,
+  validation.validateParamId(),
   asyncHandler(async (req: Request, res: Response) => {
     const { id } = matchedData<{ id: number }>(req);
     if (isNaN(id)) throw new BadRequestError();
@@ -193,8 +156,8 @@ const updateGameGet = [
 ];
 
 const updateGamePost = [
-  ...gameValidation,
-  ...idValidationParam,
+  ...validation.validateGame(),
+  validation.validateParamId(),
   asyncHandler(async (req: Request, res: Response) => {
     const { id, ...values } = matchedData<{ id: number } & NewGame>(req);
     if (isNaN(id)) throw new BadRequestError();
