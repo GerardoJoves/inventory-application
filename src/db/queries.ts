@@ -28,7 +28,7 @@ interface Developer {
   name: string;
 }
 
-const getGames = async (searchTerm = '', limit = 10, offset = 0) => {
+const getPaginatedGames = async (searchTerm = '', limit = 10, offset = 0) => {
   let query: QueryConfig = {
     text: 'SELECT id, title, COUNT(*) OVER() AS total_games FROM games LIMIT $1 OFFSET $2',
     values: [limit, offset],
@@ -43,7 +43,11 @@ const getGames = async (searchTerm = '', limit = 10, offset = 0) => {
   return res.rows;
 };
 
-const getGamesByGenre = async (genreId: number, limit = 10, offset = 0) => {
+const getPaginatedGamesByGenre = async (
+  genreId: number,
+  limit = 10,
+  offset = 0,
+) => {
   const genreQuery = {
     text: 'SELECT * FROM genres WHERE id = $1',
     values: [genreId],
@@ -62,7 +66,11 @@ const getGamesByGenre = async (genreId: number, limit = 10, offset = 0) => {
   };
 };
 
-const getGamesByDeveloper = async (devId: number, limit = 10, offset = 0) => {
+const getPaginatedGamesByDeveloper = async (
+  devId: number,
+  limit = 10,
+  offset = 0,
+) => {
   const genreQuery = {
     text: 'SELECT * FROM developers WHERE id = $1',
     values: [devId],
@@ -130,7 +138,7 @@ const getGameDeveloperIds = async (gameId: number) => {
   return rows.flat();
 };
 
-const getDevelopers = async (limit = 10, offset = 0) => {
+const getPaginatedDevelopers = async (limit = 10, offset = 0) => {
   const query = {
     text: 'SELECT id, name, COUNT(*) OVER() AS total_developers FROM developers LIMIT $1 OFFSET $2',
     values: [limit, offset],
@@ -141,12 +149,24 @@ const getDevelopers = async (limit = 10, offset = 0) => {
   return rows;
 };
 
-const getGenres = async (limit = 10, offset = 0) => {
+const getAllDevelopers = async () => {
+  const query = 'SELECT id, name FROM developers';
+  const { rows } = await pool.query<Developer>(query);
+  return rows;
+};
+
+const getPaginatedGenres = async (limit = 10, offset = 0) => {
   const query = {
     text: 'SELECT id, name, COUNT(*) OVER() AS total_genres FROM genres LIMIT $1 OFFSET $2',
     values: [limit, offset],
   };
   const { rows } = await pool.query<Genre & { total_genres: number }>(query);
+  return rows;
+};
+
+const getAllGenres = async () => {
+  const query = 'SELECT id, name FROM genres';
+  const { rows } = await pool.query<Genre>(query);
   return rows;
 };
 
@@ -360,6 +380,8 @@ const deleteGame = async (id: number) => {
 };
 
 export default {
+  getAllDevelopers,
+  getAllGenres,
   deleteGame,
   getGenre,
   getDeveloper,
@@ -371,13 +393,13 @@ export default {
   getDeveloperById,
   updateDeveloper,
   updateGenre,
-  getGames,
+  getPaginatedGames,
   getGameDeveloperIds,
   getGameGenreIds,
-  getDevelopers,
-  getGenres,
-  getGamesByGenre,
-  getGamesByDeveloper,
+  getPaginatedDevelopers,
+  getPaginatedGenres,
+  getPaginatedGamesByGenre,
+  getPaginatedGamesByDeveloper,
   getGame,
   getGameGenres,
   getGameDevelopers,

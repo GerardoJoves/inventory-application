@@ -35,7 +35,7 @@ const genreListGet = [
     const { page } = matchedData<{ page: number }>(req);
     const limit = 10;
     const offset = page ? (page - 1) * limit : 0;
-    const genres = await db.getGenres(limit, offset);
+    const genres = await db.getPaginatedGenres(limit, offset);
     const totalPages = genres[0]
       ? Math.ceil(genres[0].total_genres / limit)
       : 1;

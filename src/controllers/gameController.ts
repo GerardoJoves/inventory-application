@@ -54,7 +54,7 @@ const gameListGet = [
     const limit = 10;
     const query = matchedData<GamesQuery>(req, { locations: ['query'] });
     const offset = query.page ? (query.page - 1) * limit : 0;
-    const games = await db.getGames(query.search, limit, offset);
+    const games = await db.getPaginatedGames(query.search, limit, offset);
     const totalPages = games[0] ? Math.ceil(games[0].total_games / limit) : 1;
     const locals = {
       title: 'Game List',
@@ -120,8 +120,8 @@ const gameListFilteredGet = (filterBy: 'developer' | 'genre') => [
     const offset = page ? (page - 1) * limit : 0;
     const { filter, result: games } =
       filterBy === 'developer'
-        ? await db.getGamesByDeveloper(id, limit, offset)
-        : await db.getGamesByGenre(id, limit, offset);
+        ? await db.getPaginatedGamesByDeveloper(id, limit, offset)
+        : await db.getPaginatedGamesByGenre(id, limit, offset);
     if (!filter) throw new NotFoundError();
     const totalPages = games[0] ? Math.ceil(games[0].total_games / limit) : 1;
     const locals = {
@@ -136,8 +136,8 @@ const gameListFilteredGet = (filterBy: 'developer' | 'genre') => [
 ];
 
 const createGameGet = asyncHandler(async (_req, res: Response) => {
-  const genres = await db.getGenres();
-  const developers = await db.getDevelopers();
+  const genres = await db.getAllGenres();
+  const developers = await db.getAllDevelopers();
   res.render('gameForm', { title: 'Create Game', genres, developers });
 });
 
@@ -147,8 +147,8 @@ const createGamePost = [
     const values = matchedData<NewGame>(req);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      const genres = await db.getGenres();
-      const developers = await db.getDevelopers();
+      const genres = await db.getAllGenres();
+      const developers = await db.getAllDevelopers();
       const locals = {
         title: 'Create Game',
         values,
@@ -175,8 +175,8 @@ const updateGameGet = [
       await Promise.all([
         db.getGameGenreIds(id),
         db.getGameDeveloperIds(id),
-        db.getGenres(),
-        db.getDevelopers(),
+        db.getAllGenres(),
+        db.getAllDevelopers(),
       ]);
     const values = {
       ...game,
@@ -200,8 +200,8 @@ const updateGamePost = [
     if (isNaN(id)) throw new BadRequestError();
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      const genres = await db.getGenres();
-      const developers = await db.getDevelopers();
+      const genres = await db.getAllGenres();
+      const developers = await db.getAllDevelopers();
       const locals = {
         title: 'Update Game',
         values,

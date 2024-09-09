@@ -35,7 +35,7 @@ const developersListGet = [
     const { page } = matchedData<{ page: number }>(req);
     const limit = 10;
     const offset = page ? (page - 1) * limit : 0;
-    const developers = await db.getDevelopers(limit, offset);
+    const developers = await db.getPaginatedDevelopers(limit, offset);
     const totalPages = developers[0]
       ? Math.ceil(developers[0].total_developers / limit)
       : 1;
