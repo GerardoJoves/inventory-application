@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'node:path';
+import { dirname } from 'path';
 import indexRouter from './routes/index.js';
 import errorHandler from './middlewares/errorHandler.js';
 import gamesRouter from './routes/games.js';
@@ -15,7 +16,8 @@ app.set('views', path.join(import.meta.dirname, 'views'));
 app.set('view engine', 'pug');
 
 // Middleware
-app.use(express.static(path.join(import.meta.dirname, 'public')));
+const projectDir = dirname(import.meta.dirname);
+app.use(express.static(path.join(projectDir, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
