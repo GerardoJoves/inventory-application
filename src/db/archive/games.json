@@ -1,0 +1,719 @@
+[
+  {
+    "title": "Elden Ring",
+    "release_date": "Feb 25, 2022",
+    "developers": ["Bandai Namco Entertainment", "FromSoftware"],
+    "genres": ["Adventure", "RPG"],
+    "description": "Elden Ring is a fantasy, action and open world game with RPG elements such as stats, weapons and spells. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between."
+  },
+  {
+    "title": "Hades",
+    "release_date": "Dec 10, 2019",
+    "developers": ["Supergiant Games"],
+    "genres": ["Adventure", "Brawler", "Indie", "RPG"],
+    "description": "A rogue-lite hack and slash dungeon crawler in which Zagreus, son of Hades the Greek god of the dead, attempts to escape his home and his oppressive father by fighting the souls of the dead through the various layers of the ever-shifting underworld, while getting to know and forging relationships with its inhabitants."
+  },
+  {
+    "title": "The Legend of Zelda: Breath of the Wild",
+    "release_date": "Mar 03, 2017",
+    "developers": ["Nintendo", "Nintendo EPD Production Group No. 3"],
+    "genres": ["Adventure", "RPG"],
+    "description": "The Legend of Zelda: Breath of the Wild is the first 3D open-world game in the Zelda series. Link can travel anywhere and be equipped with weapons and armor found throughout the world to grant him various bonuses. Unlike many games in the series, Breath of the Wild does not impose a specific order in which quests or dungeons must be completed. While the game still has environmental obstacles such as weather effects, inhospitable lands, or powerful enemies, many of them can be overcome using the right method. A lot of critics ranked Breath of the Wild as one of the best video games of all time."
+  },
+  {
+    "title": "Undertale",
+    "release_date": "Sep 15, 2015",
+    "developers": ["tobyfox", "8-4"],
+    "genres": ["Adventure", "Indie", "RPG", "Turn Based Strategy"],
+    "description": "A small child falls into the Underground, where monsters have long been banished by humans and are hunting every human that they find. The player controls the child as they try to make it back to the Surface through hostile environments, all the while engaging with a turn-based combat system with puzzle-solving and bullet hell elements, as well as other unconventional game mechanics."
+  },
+  {
+    "title": "Hollow Knight",
+    "release_date": "Feb 24, 2017",
+    "developers": ["Team Cherry"],
+    "genres": ["Adventure", "Indie", "Platform"],
+    "description": "A 2D metroidvania with an emphasis on close combat and exploration in which the player enters the once-prosperous now-bleak insect kingdom of Hallownest, travels through its various districts, meets friendly inhabitants, fights hostile ones and uncovers the kingdom's history while improving their combat abilities and movement arsenal by fighting bosses and accessing out-of-the-way areas."
+  },
+  {
+    "title": "Minecraft",
+    "release_date": "Nov 18, 2011",
+    "developers": ["Mojang Studios"],
+    "genres": ["Adventure", "Simulator"],
+    "description": "Minecraft focuses on allowing the player to explore, interact with, and modify a dynamically-generated map made of one-cubic-meter-sized blocks. In addition to blocks, the environment features plants, mobs, and items. Some activities in the game include mining for ore, fighting hostile mobs, and crafting new blocks and tools by gathering various resources found in the game. The game's open-ended model allows players to create structures, creations, and artwork on various multiplayer servers or their single-player maps. Other features include redstone circuits for logic computations and remote actions, minecarts and tracks, and a mysterious underworld called the Nether. A designated but completely optional goal of the game is to travel to a dimension called the End, and defeat the ender dragon."
+  },
+  {
+    "title": "Omori",
+    "release_date": "Dec 25, 2020",
+    "developers": ["OMOCAT", "PLAYISM"],
+    "genres": ["Adventure", "Indie", "RPG", "Turn Based Strategy"],
+    "description": "A turn-based surreal horror RPG in which a child traverses various mundane, quirky, humourous, mysterious and horrific lands with his friends in search of a missing person while confronting his past and his fears. Explore a strange world full of colorful friends and foes. When the time comes, the path you’ve chosen will determine your fate... and perhaps the fate of others as well."
+  },
+  {
+    "title": "Metroid Dread",
+    "release_date": "Oct 07, 2021",
+    "developers": ["Nintendo", "MercurySteam"],
+    "genres": ["Adventure", "Platform"],
+    "description": "Join intergalactic bounty hunter Samus Aran in her first new 2D Metroid story in 19 years. Samus’ story continues after the events of the Metroid Fusion game when she descends upon planet ZDR to investigate a mysterious transmission sent to the Galactic Federation. The remote planet has become overrun by vicious alien lifeforms and chilling mechanical menaces. Samus is more agile and capable than ever, but can she overcome the inhuman threat stalking the depths of ZDR?"
+  },
+  {
+    "title": "Among Us",
+    "release_date": "Jun 15, 2018",
+    "developers": ["InnerSloth"],
+    "genres": ["Indie", "Strategy"],
+    "description": "Join your crew-mates in a multiplayer game of teamwork and betrayal! Play with 4-15 players online or via local WiFi as you attempt to prepare your spaceship for departure, but beware as one or more random players among the Crew are Impostors bent on killing everyone!"
+  },
+  {
+    "title": "NieR: Automata",
+    "release_date": "Feb 23, 2017",
+    "developers": ["PlatinumGames", "Square Enix"],
+    "genres": ["Brawler", "RPG"],
+    "description": "NieR: Automata tells the story of androids 2B, 9S and A2 and their battle to reclaim the machine-driven dystopia overrun by powerful machines."
+  },
+  {
+    "title": "God of War",
+    "release_date": "Apr 20, 2018",
+    "developers": ["Sony Interactive Entertainment", "SIE Santa Monica Studio"],
+    "genres": ["Adventure", "Brawler", "RPG"],
+    "description": "God of War is the sequel to God of War III as well as a continuation of the canon God of War chronology. Unlike previous installments, this game focuses on Norse mythology and follows an older and more seasoned Kratos and his son Atreus in the years since the third game. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same."
+  },
+  {
+    "title": "Portal 2",
+    "release_date": "Apr 18, 2011",
+    "developers": ["Valve", "Electronic Arts"],
+    "genres": ["Adventure", "Platform", "Puzzle", "Shooter"],
+    "description": "Sequel to the acclaimed Portal (2007), Portal 2 pits the protagonist of the original game, Chell, and her new robot friend, Wheatley, against more puzzles conceived by GLaDOS, an A.I. with the sole purpose of testing the Portal Gun's mechanics and taking revenge on Chell for the events of Portal. As a result of several interactions and revelations, Chell once again pushes to escape Aperture Science Labs."
+  },
+  {
+    "title": "Bloodborne",
+    "release_date": "Mar 24, 2015",
+    "developers": ["FromSoftware", "Sony Computer Entertainment"],
+    "genres": ["Adventure", "RPG"],
+    "description": "An action RPG in which the player embodies a Hunter who, after being transfused with the mysterious blood local to the city of Yharnam, sets off into a \"night of the Hunt\", an extended night in which Hunters may phase in and out of dream and reality in order to thin the outbreak of abominable beasts that plague the land and, for the more resilient and insightful Hunters, uncover the answers to the Hunt's many mysteries."
+  },
+  {
+    "title": "Celeste",
+    "release_date": "Jan 25, 2018",
+    "developers": ["Extremely OK Games", "Maddy Makes Games"],
+    "genres": ["Adventure", "Indie", "Platform"],
+    "description": "Help Madeline survive her inner demons on her journey to the top of Celeste Mountain, in this super-tight platformer from the creators of TowerFall. Brave hundreds of hand-crafted challenges, uncover devious secrets, and piece together the mystery of the mountain."
+  },
+  {
+    "title": "Yakuza 0",
+    "release_date": "Mar 12, 2015",
+    "developers": ["Ryū Ga Gotoku Studios", "Sega"],
+    "genres": ["Adventure", "Brawler", "RPG", "Simulator"],
+    "description": "The glitz, glamour, and unbridled decadence of the 80s are back! Yakuza 0 is a prequel set in 1988 to the Yakuza series, taking place before the first game. Fight like hell through Tokyo and Osaka with protagonist Kazuma Kiryu and series regular Goro Majima. Play as Kazuma Kiryu and discover how he finds himself in a world of trouble when a simple debt collection goes wrong and his mark winds up murdered. Then, step into the silver-toed shoes of Goro Majima and explore his “normal” life as the proprietor of a cabaret club."
+  },
+  {
+    "title": "Red Dead Redemption 2",
+    "release_date": "Oct 26, 2018",
+    "developers": ["Take-Two Interactive", "Rockstar Games"],
+    "genres": ["Adventure", "RPG", "Shooter"],
+    "description": "Red Dead Redemption 2 is the epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang, on the run across America at the dawn of the modern age."
+  },
+  {
+    "title": "Portal",
+    "release_date": "Oct 10, 2007",
+    "developers": ["Valve", "Electronic Arts"],
+    "genres": ["Platform", "Puzzle", "Shooter"],
+    "description": "Waking up in a seemingly empty laboratory, the player is made to complete various physics-based puzzle challenges through numerous test chambers in order to test out the new Aperture Science Handheld Portal Device, without an explanation as to how, why or by whom."
+  },
+  {
+    "title": "Super Mario Odyssey",
+    "release_date": "Oct 27, 2017",
+    "developers": ["Nintendo"],
+    "genres": ["Adventure", "Platform"],
+    "description": "Explore incredible places far from the Mushroom Kingdom as you join Mario and his new ally Cappy on a massive, globe-trotting 3D adventure. Use amazing new abilities, like the power to capture and control objects, animals, and enemies to collect Power Moons so you can power up the Odyssey airship and save Princess Peach from Bowser’s wedding plans!"
+  },
+  {
+    "title": "Resident Evil Village",
+    "release_date": "May 06, 2021",
+    "developers": ["Capcom"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "Resident Evil Village is a first person survival horror and the sequel to Resident Evil 7: Biohazard. The game maintains elements from previous Resident Evil games with players having to scavenge environments for items and manage their resources. However, it adds more action-oriented gameplay, with higher enemy counts and a greater emphasis on combat."
+  },
+  {
+    "title": "Super Mario Galaxy",
+    "release_date": "Nov 01, 2007",
+    "developers": ["Nintendo EAD", "Nintendo"],
+    "genres": ["Adventure", "Platform"],
+    "description": "A 3D platformer and first Wii entry in the Super Mario franchise, Super Mario Galaxy sees Mario jump across planets and galaxies with varying items, enemies, geographies and gravity mechanics in order to reach his enemy Bowser, who has attacked the Mushroom Kingdom and hijacked Princess Peach's castle with her inside."
+  },
+  {
+    "title": "Fallout: New Vegas",
+    "release_date": "Oct 19, 2010",
+    "developers": ["Obsidian Entertainment", "Bandai Namco Entertainment"],
+    "genres": ["RPG", "Shooter"],
+    "description": "In this first-person Western RPG, the player takes on the role of Courier 6, barely surviving after being robbed of their cargo, shot and put into a shallow grave by a New Vegas mob boss. The Courier sets out to track down their robbers and retrieve their cargo, and winds up getting tangled in the complex ideological and socioeconomic web of the many factions and settlements of post-nuclear Nevada."
+  },
+  {
+    "title": "Outer Wilds",
+    "release_date": "May 28, 2019",
+    "developers": ["Mobius Digital", "Annapurna Interactive"],
+    "genres": ["Adventure", "Indie", "Puzzle", "Simulator"],
+    "description": "Outer Wilds is a critically-acclaimed and award-winning open world mystery about a solar system trapped in an endless time loop. The newest member of the space program in a small village on the planet Timber Hearth, the player navigates a space shuttle and travels across their solar system to get to the bottom of its mysteries by exploring the cosmos and gathering the knowledge hidden within each of the system's planets, left behind by another civilization in the distant past."
+  },
+  {
+    "title": "Resident Evil 2",
+    "release_date": "Jan 25, 2019",
+    "developers": ["Capcom", "Capcom Development Division 1"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "Resident Evil 2 is a remake of 1998's Resident Evil 2. The game was not developed with the intent of improving the original, but rather a reimagining of the original story with redesigned maps, characters and story elements. Gameplay mechanics are more similar to Resident Evil 7: Biohazard though with the use of an over-the-shoulder camera."
+  },
+  {
+    "title": "Doom",
+    "release_date": "May 12, 2016",
+    "developers": ["id Software", "Bethesda Softworks"],
+    "genres": ["Shooter"],
+    "description": "Developed by id software, the studio that pioneered the first-person shooter genre and created multiplayer Deathmatch, Doom returns as a brutally fun and challenging modern-day shooter experience. Relentless demons, impossibly destructive guns, and fast, fluid movement provide the foundation for intense, first-person combat – whether you’re obliterating demon hordes through the depths of Hell in the single-player campaign, or competing against your friends in numerous multiplayer modes. Expand your gameplay experience using Doom SnapMap game editor to easily create, play, and share your content with the world."
+  },
+  {
+    "title": "Shin Megami Tensei V",
+    "release_date": "Nov 12, 2021",
+    "developers": ["Atlus", "Sega"],
+    "genres": ["Adventure", "RPG", "Turn Based Strategy"],
+    "description": "Shin Megami Tensei V, the fifth numbered game of the Shin Megami Tensei series, is a role-playing video game set in modern-day Tokyo. It will feature returning gameplay elements from previous games, such as the ability to fuse demons, along with new mechanics."
+  },
+  {
+    "title": "Bayonetta",
+    "release_date": "Oct 29, 2009",
+    "developers": ["Nex Entertainment", "Sega"],
+    "genres": ["Brawler", "Shooter"],
+    "description": "A member of an ancient witch clan and possessing powers beyond the comprehension of mere mortals, Bayonetta faces-off against countless angelic enemies, many reaching epic proportions, in a game of 100% pure, unadulterated all-out action. Outlandish finishing moves are performed with balletic grace as Bayonetta flows from one fight to another. With magnificent over-the-top action taking place in stages that are a veritable theme park of exciting attractions, Bayonetta pushes the limits of the action genre, bringing to life its fast-paced, dynamic climax combat."
+  },
+  {
+    "title": "Stardew Valley",
+    "release_date": "Feb 26, 2016",
+    "developers": ["ConcernedApe", "Chucklefish Games"],
+    "genres": ["Indie", "RPG", "Simulator", "Strategy"],
+    "description": "Stardew Valley is an open-ended country-life RPG! Youâ€™ve inherited your grandfatherâ€™s old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life. Can you learn to live off the land and turn these overgrown fields into a thriving home? It wonâ€™t be easy. Ever since Joja Corporation came to town, the old ways of life have all but disappeared. The community center, once the townâ€™s most vibrant hub of activity, now lies in shambles. But the valley seems full of opportunity. With a little dedication, you might just be the one to restore Stardew Valley to greatness!"
+  },
+  {
+    "title": "The Last of Us Part II",
+    "release_date": "Jun 19, 2020",
+    "developers": ["Naughty Dog", "Sony Interactive Entertainment"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "The Last of Us Part II is an action-adventure game set five years after the events of The Last of Us. The player traverses post-apocalyptic environments such as buildings and forests to advance the story. He can use firearms, improvised weapons, and stealth to defend against hostile humans and cannibalistic creatures infected by a mutated strain of the Cordyceps fungus. The game intermittently switches control between Ellie and Abby, and also briefly Joel in the opening sequence. The nimble nature of the player character introduces platforming elements, allowing the player to jump and climb to traverse environments and gain advantages during combat."
+  },
+  {
+    "title": "Silent Hill 2",
+    "release_date": "Sep 24, 2001",
+    "developers": ["Team Silent", "Konami"],
+    "genres": ["Adventure", "Puzzle"],
+    "description": "The second entry in the Silent Hill franchise, Silent Hill 2 is a narrative-focused third-person psychological horror game with exploration and puzzle-solving elements which follows James Sunderland, a man who receives a letter, seemingly sent by his three-years-deceased wife Mary, in which he is beckoned to the fog-ridden town of Silent Hill at the same time as numerous other people troubled by their past."
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt",
+    "release_date": "May 19, 2015",
+    "developers": ["WB Games", "CD Projekt RED"],
+    "genres": ["Adventure", "RPG"],
+    "description": "RPG and sequel to The Witcher 2 (2011), The Witcher 3 follows witcher Geralt of Rivia as he seeks out his former lover and his young subject while intermingling with the political workings of the wartorn Northern Kingdoms. Geralt has to fight monsters and deal with people of all sorts in order to solve complex problems and settle contentious disputes, each ranging from the personal to the world-changing."
+  },
+  {
+    "title": "Devil May Cry 5",
+    "release_date": "Mar 08, 2019",
+    "developers": ["Capcom", "Capcom Development Division 1"],
+    "genres": ["Adventure", "Brawler"],
+    "description": "Devil May Cry 5 is a brand-new entry in the legendary over-the-top action series Devil May Cry. The game features three playable characters, each with a radically different stylish combat play style as they take on the city overrun with demons. Developed with Capcom’s in-house proprietary RE engine, the series continues to achieve new heights in fidelity with graphics that utilize photorealistic character designs and stunning lighting and environmental effects."
+  },
+  {
+    "title": "Overwatch 2",
+    "release_date": "Oct 04, 2022",
+    "developers": ["Blizzard Entertainment"],
+    "genres": ["Shooter"],
+    "description": "Reunite and stand together in a new age of heroes. Overwatch 2 builds on an award-winning foundation of epic competitive play, and challenges the world’s heroes to team up, power up, and take on an overwhelming outbreak of threats around the globe."
+  },
+  {
+    "title": "Resident Evil 4",
+    "release_date": "Jan 11, 2005",
+    "developers": ["Capcom", "Capcom Production Studio 4"],
+    "genres": ["Shooter"],
+    "description": "Resident Evil 4 is the sixth installment of the Resident Evil series praised as a revolution from the core games. It was the first title to implement a third-person view rather than the original fixed camera angles its predecessors had. Its mechanics have been completely revamped to incorporate fast-paced gunplay, quick controls and shoot-outs involving massive crowds of enemies in more open areas. The brand-new AI system and open environments allow enemies to work together to capture and corner Leon. Enemies are now humans, which allows them to climb up ladders, open doors, and use weapons throughout the game. Resident Evil 4 had one of the most tormented developments in any game, four proposed versions of the game were discarded by the developers before the finished product was released."
+  },
+  {
+    "title": "Left 4 Dead 2",
+    "release_date": "Nov 17, 2009",
+    "developers": ["Turtle Rock Studios", "Valve"],
+    "genres": ["Shooter"],
+    "description": "Left 4 Dead 2 is a cooperative first-person shooter video game, the sequel to Valve Corporation's Left 4 Dead. The Game builds upon cooperatively focused gameplay and Valve's proprietary Source engine, the same game engine used in the original Left 4 Dead. Set during the aftermath of an apocalyptic pandemic, Left 4 Dead 2 focuses on four new Survivors, fighting against hordes of the Infected, who develop severe psychosis and exhibit zombie-like tendencies. The Survivors must fight their way through five campaigns, interspersed with safe houses that act as checkpoints, with the goal of escape at each campaign's finale."
+  },
+  {
+    "title": "League of Legends",
+    "release_date": "Oct 27, 2009",
+    "developers": ["GOA Games Services Ltd.", "Riot Games"],
+    "genres": ["MOBA", "RPG", "Strategy"],
+    "description": "League of Legends is a fast-paced, competitive online game that blends the speed and intensity of an RTS with RPG elements. Two teams of powerful champions, each with a unique design and playstyle, battle head-to-head across multiple battlefields and game modes. With an ever-expanding roster of champions, frequent updates and a thriving tournament scene, League of Legends offers endless replayability for players of every skill level."
+  },
+  {
+    "title": "Control",
+    "release_date": "Aug 27, 2019",
+    "developers": ["505 Games", "Remedy Entertainment"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "Control is a supernatural 3rd person action-adventure will challenge you to master the combination of supernatural abilities, modifiable loadouts and reactive environments while fighting through a deep and unpredictable world."
+  },
+  {
+    "title": "Doki Doki Literature Club!",
+    "release_date": "Sep 22, 2017",
+    "developers": ["Team Salvato"],
+    "genres": ["Adventure", "Indie", "Visual Novel"],
+    "description": "The Literature Club is full of cute girls! Will you write the way into their heart? This game is not suitable for children or those who are easily disturbed."
+  },
+  {
+    "title": "Batman: Arkham City",
+    "release_date": "Oct 18, 2011",
+    "developers": ["DC Entertainment", "Rocksteady Studios"],
+    "genres": ["Adventure", "Brawler"],
+    "description": "After the events of Batman: Arkham Asylum (2009), a section of the city of Gotham has been turned into a prison, designed to keep the scum of the city away from the people. Bruce Wayne protests this prison but is shortly kidnapped by the despicable Hugo Strange, thus having to face the city's most powerful villains as the Batman while trying to uncover Strange's plans."
+  },
+  {
+    "title": "Dark Souls II: Scholar of the First Sin",
+    "release_date": "Apr 02, 2015",
+    "developers": ["Bandai Namco Entertainment", "FromSoftware"],
+    "genres": ["Adventure", "RPG"],
+    "description": "'Dark Souls II: Scholar of the First Sin' is an upgrade and bundle of Dark Souls II that brings the game to Playstation 4 and Xbox One, as well as DX11 features on PC. It also bundles all previous DLCs and provides additional features and content."
+  },
+  {
+    "title": "Deathloop",
+    "release_date": "Sep 14, 2021",
+    "developers": ["Bethesda Softworks", "Arkane Studios"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "Deathloop transports players to the lawless island of Blackreef in an eternal struggle between two extraordinary assassins. Explore stunning environments and meticulously designed levels in an immersive gameplay experience that lets you approach every situation any way you like. Hunt down targets all over the island in an effort to put an end to the cycle once and for all, and remember, if at first you don’t succeed… die, die again."
+  },
+  {
+    "title": "Shadow of the Colossus",
+    "release_date": "Oct 18, 2005",
+    "developers": ["Sony Computer Entertainment, Inc. (SCEI)", "Team Ico"],
+    "genres": ["Adventure", "Platform", "Puzzle"],
+    "description": "An open-world action/adventure game in which a young wanderer, along with a stolen magical sword and his steed companion, trespasses a cursed land, makes a deal with an ancient being to bring a sacrificial victim back to life, and sets off to fulfill his end of the bargain, which involves tracking down and infiltrating the abodes of sixteen colossi and sacrificing them to achieve his goal."
+  },
+  {
+    "title": "Teenage Mutant Ninja Turtles: Shredder's Revenge",
+    "release_date": "Jun 16, 2022",
+    "developers": ["DotEmu", "Tribute Games"],
+    "genres": ["Arcade", "Brawler", "Indie"],
+    "description": "Teenage Mutant Ninja Turtles: Shredder's Revenge reunites Leonardo, Raphael, Michelangelo, and Donatello to kick shell in a beautifully realized pixel art world invoking the turtles' classic 1987 design."
+  },
+  {
+    "title": "Sifu",
+    "release_date": "Feb 08, 2022",
+    "developers": ["Sloclap", "Kepler Interactive"],
+    "genres": ["Brawler", "Indie"],
+    "description": "A third person action game featuring intense hand-to-hand combat, it puts you in control of a young Kung-Fu student on his path of revenge throughout the city."
+  },
+  {
+    "title": "Super Mario Bros. 3",
+    "release_date": "Oct 23, 1988",
+    "developers": ["Nintendo R&D4", "Nintendo"],
+    "genres": ["Platform"],
+    "description": "Super Mario Bros. 3, the third entry in the Super Mario Bros. series and Super Mario franchise, sees Mario or Luigi navigate a nonlinear world map containing platforming levels and optional minigames and challenges. The game features more diverse movement options and new items alongside more complex level designs and boss battles."
+  },
+  {
+    "title": "Dishonored",
+    "release_date": "Oct 09, 2012",
+    "developers": ["Arkane Studios", "Bethesda Softworks"],
+    "genres": ["Adventure", "RPG"],
+    "description": "Dishonored is an immersive first-person action game that casts you as a supernatural assassin driven by revenge. With Dishonored’s flexible combat system, creatively eliminate your targets as you combine the supernatural abilities, weapons and unusual gadgets at your disposal. Pursue your enemies under the cover of darkness or ruthlessly attack them head on with weapons drawn. The outcome of each mission plays out based on the choices you make."
+  },
+  {
+    "title": "Metal Gear Solid 3: Snake Eater",
+    "release_date": "Nov 17, 2004",
+    "developers": ["Konami Computer Entertainment Japan", "Konami"],
+    "genres": ["Adventure", "Shooter", "Tactical"],
+    "description": "Metal Gear Solid 3: Snake Eater is the prequel to the entire Metal Gear series. Most of the series' defining gameplay elements have been carried over and as before, Snake must use stealth and wits rather than brute force to infiltrate enemy zones and eliminate his major adversaries. Unlike the previous games, this installment takes place in a large outdoor jungle. Snake is able to use camouflage, climb trees, hide in tall grass or wear clothes that make him less noticeable."
+  },
+  {
+    "title": "Journey",
+    "release_date": "Mar 13, 2012",
+    "developers": ["Sony Computer Entertainment", "ThatGameCompany"],
+    "genres": ["Adventure", "Platform"],
+    "description": "A third-person adventure game in which the player, controlling a robed figure, makes a pilgrimage through a desert landscape to a rugged mountain with a beacon of light in the distance while uncovering the history of their people, rescuing and cooperating with friendly creatures, avoiding predatory ones and communicating with other travelers."
+  },
+  {
+    "title": "Kingdom Hearts",
+    "release_date": "Mar 28, 2002",
+    "developers": ["Square", "Disney Interactive Studios"],
+    "genres": ["Adventure", "RPG"],
+    "description": "Kingdom Hearts is an action role-playing game developed and published by Squaresoft for the PlayStation 2. It is the result of a collaboration between Square and The Walt Disney Company. The game combines characters and settings from Disney's animated features with those from the Final Fantasy series, developed by Square."
+  },
+  {
+    "title": "Genshin Impact",
+    "release_date": "Sep 28, 2020",
+    "developers": ["miHoYo", "HoYoverse"],
+    "genres": ["Adventure", "RPG"],
+    "description": "Genshin Impact is an open-world action RPG, where you embark on a journey across Teyvat to find your lost sibling and seek answers from The Seven, the gods of each element. Explore this wondrous world, join forces with a diverse range of characters, and unravel the countless mysteries that Teyvat holds..."
+  },
+  {
+    "title": "Signalis",
+    "release_date": "Oct 27, 2022",
+    "developers": ["rose-engine", "Humble Games"],
+    "genres": ["Adventure", "Indie"],
+    "description": "Signalis is a classic survival horror experience with a unique aesthetic, full of melancholic mystery. Investigate a dark secret, solve puzzles, fight off nightmarish creatures and navigate dystopian, surreal retrotech worlds as Elster, a technician Replika searching for her lost dreams."
+  },
+  {
+    "title": "Resident Evil Village",
+    "release_date": "May 06, 2021",
+    "developers": ["Capcom"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "Resident Evil Village is a first person survival horror and the sequel to Resident Evil 7: Biohazard. The game maintains elements from previous Resident Evil games with players having to scavenge environments for items and manage their resources. However, it adds more action-oriented gameplay, with higher enemy counts and a greater emphasis on combat."
+  },
+  {
+    "title": "Super Mario Galaxy",
+    "release_date": "Nov 01, 2007",
+    "developers": ["Nintendo EAD", "Nintendo"],
+    "genres": ["Adventure", "Platform"],
+    "description": "A 3D platformer and first Wii entry in the Super Mario franchise, Super Mario Galaxy sees Mario jump across planets and galaxies with varying items, enemies, geographies and gravity mechanics in order to reach his enemy Bowser, who has attacked the Mushroom Kingdom and hijacked Princess Peach's castle with her inside."
+  },
+  {
+    "title": "Fallout: New Vegas",
+    "release_date": "Oct 19, 2010",
+    "developers": ["Obsidian Entertainment", "Bandai Namco Entertainment"],
+    "genres": ["RPG", "Shooter"],
+    "description": "In this first-person Western RPG, the player takes on the role of Courier 6, barely surviving after being robbed of their cargo, shot and put into a shallow grave by a New Vegas mob boss. The Courier sets out to track down their robbers and retrieve their cargo, and winds up getting tangled in the complex ideological and socioeconomic web of the many factions and settlements of post-nuclear Nevada."
+  },
+  {
+    "title": "Outer Wilds",
+    "release_date": "May 28, 2019",
+    "developers": ["Mobius Digital", "Annapurna Interactive"],
+    "genres": ["Adventure", "Indie", "Puzzle", "Simulator"],
+    "description": "Outer Wilds is a critically-acclaimed and award-winning open world mystery about a solar system trapped in an endless time loop. The newest member of the space program in a small village on the planet Timber Hearth, the player navigates a space shuttle and travels across their solar system to get to the bottom of its mysteries by exploring the cosmos and gathering the knowledge hidden within each of the system's planets, left behind by another civilization in the distant past."
+  },
+  {
+    "title": "Resident Evil 2",
+    "release_date": "Jan 25, 2019",
+    "developers": ["Capcom", "Capcom Development Division 1"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "Resident Evil 2 is a remake of 1998's Resident Evil 2. The game was not developed with the intent of improving the original, but rather a reimagining of the original story with redesigned maps, characters and story elements. Gameplay mechanics are more similar to Resident Evil 7: Biohazard though with the use of an over-the-shoulder camera."
+  },
+  {
+    "title": "Doom",
+    "release_date": "May 12, 2016",
+    "developers": ["id Software", "Bethesda Softworks"],
+    "genres": ["Shooter"],
+    "description": "Developed by id software, the studio that pioneered the first-person shooter genre and created multiplayer Deathmatch, Doom returns as a brutally fun and challenging modern-day shooter experience. Relentless demons, impossibly destructive guns, and fast, fluid movement provide the foundation for intense, first-person combat – whether you’re obliterating demon hordes through the depths of Hell in the single-player campaign, or competing against your friends in numerous multiplayer modes. Expand your gameplay experience using Doom SnapMap game editor to easily create, play, and share your content with the world."
+  },
+  {
+    "title": "Shin Megami Tensei V",
+    "release_date": "Nov 12, 2021",
+    "developers": ["Atlus", "Sega"],
+    "genres": ["Adventure", "RPG", "Turn Based Strategy"],
+    "description": "Shin Megami Tensei V, the fifth numbered game of the Shin Megami Tensei series, is a role-playing video game set in modern-day Tokyo. It will feature returning gameplay elements from previous games, such as the ability to fuse demons, along with new mechanics."
+  },
+  {
+    "title": "Bayonetta",
+    "release_date": "Oct 29, 2009",
+    "developers": ["Nex Entertainment", "Sega"],
+    "genres": ["Brawler", "Shooter"],
+    "description": "A member of an ancient witch clan and possessing powers beyond the comprehension of mere mortals, Bayonetta faces-off against countless angelic enemies, many reaching epic proportions, in a game of 100% pure, unadulterated all-out action. Outlandish finishing moves are performed with balletic grace as Bayonetta flows from one fight to another. With magnificent over-the-top action taking place in stages that are a veritable theme park of exciting attractions, Bayonetta pushes the limits of the action genre, bringing to life its fast-paced, dynamic climax combat."
+  },
+  {
+    "title": "Stardew Valley",
+    "release_date": "Feb 26, 2016",
+    "developers": ["ConcernedApe", "Chucklefish Games"],
+    "genres": ["Indie", "RPG", "Simulator", "Strategy"],
+    "description": "Stardew Valley is an open-ended country-life RPG! Youâ€™ve inherited your grandfatherâ€™s old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life. Can you learn to live off the land and turn these overgrown fields into a thriving home? It wonâ€™t be easy. Ever since Joja Corporation came to town, the old ways of life have all but disappeared. The community center, once the townâ€™s most vibrant hub of activity, now lies in shambles. But the valley seems full of opportunity. With a little dedication, you might just be the one to restore Stardew Valley to greatness!"
+  },
+  {
+    "title": "The Last of Us Part II",
+    "release_date": "Jun 19, 2020",
+    "developers": ["Naughty Dog", "Sony Interactive Entertainment"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "The Last of Us Part II is an action-adventure game set five years after the events of The Last of Us. The player traverses post-apocalyptic environments such as buildings and forests to advance the story. He can use firearms, improvised weapons, and stealth to defend against hostile humans and cannibalistic creatures infected by a mutated strain of the Cordyceps fungus. The game intermittently switches control between Ellie and Abby, and also briefly Joel in the opening sequence. The nimble nature of the player character introduces platforming elements, allowing the player to jump and climb to traverse environments and gain advantages during combat."
+  },
+  {
+    "title": "Silent Hill 2",
+    "release_date": "Sep 24, 2001",
+    "developers": ["Team Silent", "Konami"],
+    "genres": ["Adventure", "Puzzle"],
+    "description": "The second entry in the Silent Hill franchise, Silent Hill 2 is a narrative-focused third-person psychological horror game with exploration and puzzle-solving elements which follows James Sunderland, a man who receives a letter, seemingly sent by his three-years-deceased wife Mary, in which he is beckoned to the fog-ridden town of Silent Hill at the same time as numerous other people troubled by their past."
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt",
+    "release_date": "May 19, 2015",
+    "developers": ["WB Games", "CD Projekt RED"],
+    "genres": ["Adventure", "RPG"],
+    "description": "RPG and sequel to The Witcher 2 (2011), The Witcher 3 follows witcher Geralt of Rivia as he seeks out his former lover and his young subject while intermingling with the political workings of the wartorn Northern Kingdoms. Geralt has to fight monsters and deal with people of all sorts in order to solve complex problems and settle contentious disputes, each ranging from the personal to the world-changing."
+  },
+  {
+    "title": "Persona 5",
+    "release_date": "Sep 15, 2016",
+    "developers": ["Atlus", "Atlus USA"],
+    "genres": ["Adventure", "RPG", "Turn Based Strategy"],
+    "description": "Persona 5, a turn-based JRPG with visual novel elements, follows a high school student with a criminal record for a crime he didn't commit. Soon he meets several characters who share similar fates to him, and discovers a metaphysical realm which allows him and his friends to channel their pent-up frustrations into becoming a group of vigilantes reveling in aesthetics and rebellion while fighting corruption."
+  },
+  {
+    "title": "Tunic",
+    "release_date": "Mar 16, 2022",
+    "developers": ["Andrew Shouldice", "Finji"],
+    "genres": ["Adventure", "Indie", "Puzzle", "RPG"],
+    "description": "Tunic is an action adventure about a tiny fox in a big world. Explore the wilderness, discover spooky ruins, and fight terrible creatures from long ago."
+  },
+  {
+    "title": "Dark Souls",
+    "release_date": "Sep 22, 2011",
+    "developers": ["FromSoftware", "Bandai Namco Entertainment"],
+    "genres": ["Adventure", "RPG"],
+    "description": "An action RPG and spiritual sequel to Demon's Souls in which the player embodies the Chosen Undead, who is tasked with fulfilling an ancient prophecy by ringing the Bells of Awakening in the dark fantasy setting of Lordran, an open world with intricate areas full of beasts, former humans gone hollow, and magical abominations whom the player must overcome in challenging and unforgiving combat."
+  },
+  {
+    "title": "The Legend of Zelda: Ocarina of Time",
+    "release_date": "Nov 21, 1998",
+    "developers": ["Nintendo", "Nintendo EAD"],
+    "genres": ["Adventure", "RPG"],
+    "description": "The Legend of Zelda: Ocarina of Time is the fifth main installment of The Legend of Zelda series and the first to be released for the Nintendo 64. It was one of the most highly anticipated games of its age, and is listed among the greatest video games ever created by numerous websites and magazines. The gameplay of Ocarina of Time was revolutionary for its time, it has arguably made more of an impact on later games in the series than any of its predecessors even though they had the same cores of exploration, dungeons, puzzles and item usage. Among the gameplay mechanics, one of the most noteworthy is the time-traveling system. The game begins with the player controlling the child Link, but later on an adult Link becomes a playable character as well and each of them has certain unique abilities. Ocarina of Time also introduces the use of music to solve puzzles: as new songs are learned, they can be used to solve puzzles, gain access to new areas and warp to different locations. Dungeon exploration is somewhat more puzzle-oriented than in earlier games but they are not too complex."
+  },
+  {
+    "title": "Vampire Survivors",
+    "release_date": "Dec 17, 2021",
+    "developers": ["Poncle"],
+    "genres": ["Arcade", "Indie", "RPG"],
+    "description": "Mow thousands of night creatures and survive until dawn! Vampire Survivors is a gothic horror casual game with rogue-lite elements, where your choices can allow you to quickly snowball against the hundreds of monsters that get thrown at you."
+  },
+  {
+    "title": "Batman: Arkham City",
+    "release_date": "Oct 18, 2011",
+    "developers": ["DC Entertainment", "Rocksteady Studios"],
+    "genres": ["Adventure", "Brawler"],
+    "description": "After the events of Batman: Arkham Asylum (2009), a section of the city of Gotham has been turned into a prison, designed to keep the scum of the city away from the people. Bruce Wayne protests this prison but is shortly kidnapped by the despicable Hugo Strange, thus having to face the city's most powerful villains as the Batman while trying to uncover Strange's plans."
+  },
+  {
+    "title": "Phoenix Wright: Ace Attorney",
+    "release_date": "Sep 15, 2005",
+    "developers": ["Nintendo Australia", "Capcom"],
+    "genres": ["Adventure", "Point-and-Click", "Puzzle", "Visual Novel"],
+    "description": "Meet Phoenix Wright, the rookie defense lawyer new to the scene with the wildest cross-examination skills in town! Take on five intriguing cases to reveal dramatic, stunning, and even comical court proceedings. Use both the touch screen to investigate the crime scenes, question witnesses and present shocking evidence. “Objection!”...It’s outrageous fun! You won’t be able to put down this laugh-out-loud, riveting adventure!"
+  },
+  {
+    "title": "Team Fortress 2",
+    "release_date": "Oct 09, 2007",
+    "developers": ["Electronic Arts", "Valve"],
+    "genres": ["Shooter"],
+    "description": "Choose from a selection of 9 classes, each with entertaining personalities and a different set of gameplay mechanics, to capture or defend the objective within numerous game modes against the enemy team, with a variety of unlockable and tradable weapons and cosmetics which add a layer of customization to each player's experience."
+  },
+  {
+    "title": "Xenoblade Chronicles 2",
+    "release_date": "Dec 01, 2017",
+    "developers": ["Monolith Soft", "Nintendo"],
+    "genres": ["Adventure", "RPG"],
+    "description": "The next adventure is on the Nintendo Switch console set on the backs of colossal, living Titans. Discover each Titan's diverse regions, culture, wildlife, equipment, and hidden secrets. Find, bond with, and command weaponized life forms known as Blades to earn abilities and enhance them. Uncover the history of Alrest and the mystery of its endless ocean of clouds."
+  },
+  {
+    "title": "Splatoon 3",
+    "release_date": "Sep 09, 2022",
+    "developers": ["Nintendo"],
+    "genres": ["Platform", "Shooter"],
+    "description": "Enter the Splatlands, a sun-scorched desert inhabited by battle-hardened Inklings and Octolings. Splatsville, the city of chaos, is the adrenaline-fueled heart of this dusty wasteland. Even in this desolate environment, Turf War reigns supreme and battles rage in new stages located in the surrounding wilds. Dynamic new moves help these fighters dodge attacks and cover more ground, along with a new bow-shaped weapon to sling ink."
+  },
+  {
+    "title": "Chrome Dino",
+    "release_date": "Sep 01, 2014",
+    "developers": ["Google"],
+    "genres": ["Arcade"],
+    "description": "Chrome Dino is a game easter egg in Google's Chrome web browser. It can be played by touching over the dinosaur or pressing the space bar when your internet connection goes down or by accessing chrome://dino/ on the web browser."
+  },
+  {
+    "title": "Dark Souls II: Scholar of the First Sin",
+    "release_date": "Apr 02, 2015",
+    "developers": ["Bandai Namco Entertainment", "FromSoftware"],
+    "genres": ["Adventure", "RPG"],
+    "description": "'Dark Souls II: Scholar of the First Sin' is an upgrade and bundle of Dark Souls II that brings the game to Playstation 4 and Xbox One, as well as DX11 features on PC. It also bundles all previous DLCs and provides additional features and content."
+  },
+  {
+    "title": "Deathloop",
+    "release_date": "Sep 14, 2021",
+    "developers": ["Bethesda Softworks", "Arkane Studios"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "Deathloop transports players to the lawless island of Blackreef in an eternal struggle between two extraordinary assassins. Explore stunning environments and meticulously designed levels in an immersive gameplay experience that lets you approach every situation any way you like. Hunt down targets all over the island in an effort to put an end to the cycle once and for all, and remember, if at first you don’t succeed… die, die again."
+  },
+  {
+    "title": "Shadow of the Colossus",
+    "release_date": "Oct 18, 2005",
+    "developers": ["Sony Computer Entertainment, Inc. (SCEI)", "Team Ico"],
+    "genres": ["Adventure", "Platform", "Puzzle"],
+    "description": "An open-world action/adventure game in which a young wanderer, along with a stolen magical sword and his steed companion, trespasses a cursed land, makes a deal with an ancient being to bring a sacrificial victim back to life, and sets off to fulfill his end of the bargain, which involves tracking down and infiltrating the abodes of sixteen colossi and sacrificing them to achieve his goal."
+  },
+  {
+    "title": "Teenage Mutant Ninja Turtles: Shredder's Revenge",
+    "release_date": "Jun 16, 2022",
+    "developers": ["DotEmu", "Tribute Games"],
+    "genres": ["Arcade", "Brawler", "Indie"],
+    "description": "Teenage Mutant Ninja Turtles: Shredder's Revenge reunites Leonardo, Raphael, Michelangelo, and Donatello to kick shell in a beautifully realized pixel art world invoking the turtles' classic 1987 design."
+  },
+  {
+    "title": "Psychonauts",
+    "release_date": "Apr 19, 2005",
+    "developers": ["Double Fine Productions", "Majesco Entertainment"],
+    "genres": ["Adventure", "Platform"],
+    "description": "A Psychic Odyssey Through the Minds of Misfits, Monsters, and Madmen. This classic action/adventure platformer from acclaimed developers Double Fine Productions follows the story of a young psychic named Razputin."
+  },
+  {
+    "title": "Fallout 4",
+    "release_date": "Nov 09, 2015",
+    "developers": ["Bethesda Game Studios", "Bethesda Softworks"],
+    "genres": ["RPG", "Shooter"],
+    "description": "Bethesda Game Studios welcome you to the world of Fallout 4, their most ambitious game ever, and the next generation of open-world gaming. As the sole survivor of Vault 111, you enter a world destroyed by nuclear war. Every second is a fight for survival, and every choice is yours. Only you can rebuild and determine the fate of the Wasteland. Welcome home."
+  },
+  {
+    "title": "Uncharted 4: A Thief's End",
+    "release_date": "May 10, 2016",
+    "developers": ["Naughty Dog", "Sony Interactive Entertainment"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "Several years after his last adventure, retired fortune hunter, Nathan Drake, is forced back into the world of thieves. With the stakes much more personal, Drake embarks on a globe-trotting journey in pursuit of a historical conspiracy behind a fabled pirate treasure. His greatest adventure will test his physical limits, his resolve, and ultimately what he's willing to sacrifice to save the ones he loves."
+  },
+  {
+    "title": "The Legend of Zelda: A Link to the Past",
+    "release_date": "Nov 21, 1991",
+    "developers": ["Nintendo EAD", "St. GIGA"],
+    "genres": ["Adventure", "Puzzle", "RPG"],
+    "description": "The Legend of Zelda: A Link to the Past is a top-down action game with puzzle-solving elements similar to the original The Legend of Zelda. After the side-scrolling and RPG-like gameplay of Zelda II: The Adventure of Link, the game is a return to the top-down view and gameplay style of the first installment. It introduces major new items to the series such as the Master Sword and the concept of two different worlds, which was revisited to some extent in Ocarina of Time with two distinct time periods rather than dark and light worlds."
+  },
+  {
+    "title": "Silent Hill",
+    "release_date": "Feb 23, 1999",
+    "developers": ["Konami", "Team Silent"],
+    "genres": ["Adventure", "Puzzle"],
+    "description": "Silent Hill is the first installment in the Silent Hill series of psychological survival horror video games. Unlike earlier survival horror games that focused on protagonists with combat training, the main character Harry Mason is an average man. The gameplay consists of combat, exploration, and puzzle-solving. The controller vibration is used to indicate Harry's heartbeat and will vibrate on low health. The player must regularly enter an inventory screen to check Harry's health, use items, and equip different weapons."
+  },
+  {
+    "title": "Super Smash Bros. Brawl",
+    "release_date": "Jan 31, 2008",
+    "developers": ["Nintendo", "Sora"],
+    "genres": ["Fighting", "Platform"],
+    "description": "Super Smash Bros. Brawl is the third installment in the Super Smash Bros. series and the follow-up to Super Smash Bros. Melee. This edition introduces super attacks referred to as final smashes: activated by destroying smash balls, these feature powerful and often unstoppable attacks, regularly introducing a major transformation of the character. This edition also introduces a brand new adventure mode in The Subspace Emissary which is a side-scrolling adventure in the style of a platformer. It retains all basic mechanics of the Super Smash Bros. series, such as a damage meter, stocks, and Smash-style attacks."
+  },
+  {
+    "title": "Borderlands 2",
+    "release_date": "Sep 18, 2012",
+    "developers": ["Gearbox Software", "2K Games"],
+    "genres": ["RPG", "Shooter"],
+    "description": "A new era of shoot and loot is about to begin. Play as one of four new vault hunters facing off against a massive new world of creatures, psychos and the evil mastermind, Handsome Jack. Make new friends, arm them with a bazillion weapons and fight alongside them in 4 player co-op on a relentless quest for revenge and redemption across the undiscovered and unpredictable living planet."
+  },
+  {
+    "title": "No More Heroes",
+    "release_date": "Dec 06, 2007",
+    "developers": ["Grasshopper Manufacture"],
+    "genres": ["Adventure", "Brawler"],
+    "description": "The journey to become the #1 assassin begins with a single slice. No More Heroes is the story of Travis Touchdown. He has received orders to kill a vagabond. In front of him appears the handsome assassin Helter Skelter. After a fierce skirmish, Travis eliminates Skelter, upon which Silvia Christel arrives. She informs Travis that his victory was done without UAA permission, but he nonetheless becomes the 11th best assassin. And so Travis’s journey begins. No More Heroes will offer an exhilarating action experience, a thrilling scenario, stylish visuals, and sounds."
+  },
+  {
+    "title": "Ghost of Tsushima",
+    "release_date": "Jul 17, 2020",
+    "developers": [
+      "Sucker Punch Productions",
+      "Sony Interactive Entertainment"
+    ],
+    "genres": ["Adventure", "Brawler", "RPG"],
+    "description": "Uncover the hidden wonders of Tsushima in this open-world action adventure. Forge a new path and wage an unconventional war for the freedom of Tsushima. Challenge opponents with your katana, master the bow to eliminate distant threats, develop stealth tactics to ambush enemies in order to win over the mongols."
+  },
+  {
+    "title": "Sifu",
+    "release_date": "Feb 08, 2022",
+    "developers": ["Sloclap", "Kepler Interactive"],
+    "genres": ["Brawler", "Indie"],
+    "description": "A third person action game featuring intense hand-to-hand combat, it puts you in control of a young Kung-Fu student on his path of revenge throughout the city."
+  },
+  {
+    "title": "Super Mario Bros. 3",
+    "release_date": "Oct 23, 1988",
+    "developers": ["Nintendo R&D4", "Nintendo"],
+    "genres": ["Platform"],
+    "description": "Super Mario Bros. 3, the third entry in the Super Mario Bros. series and Super Mario franchise, sees Mario or Luigi navigate a nonlinear world map containing platforming levels and optional minigames and challenges. The game features more diverse movement options and new items alongside more complex level designs and boss battles."
+  },
+  {
+    "title": "Dishonored",
+    "release_date": "Oct 09, 2012",
+    "developers": ["Arkane Studios", "Bethesda Softworks"],
+    "genres": ["Adventure", "RPG"],
+    "description": "Dishonored is an immersive first-person action game that casts you as a supernatural assassin driven by revenge. With Dishonored’s flexible combat system, creatively eliminate your targets as you combine the supernatural abilities, weapons and unusual gadgets at your disposal. Pursue your enemies under the cover of darkness or ruthlessly attack them head on with weapons drawn. The outcome of each mission plays out based on the choices you make."
+  },
+  {
+    "title": "Metal Gear Solid 3: Snake Eater",
+    "release_date": "Nov 17, 2004",
+    "developers": ["Konami Computer Entertainment Japan", "Konami"],
+    "genres": ["Adventure", "Shooter", "Tactical"],
+    "description": "Metal Gear Solid 3: Snake Eater is the prequel to the entire Metal Gear series. Most of the series' defining gameplay elements have been carried over and as before, Snake must use stealth and wits rather than brute force to infiltrate enemy zones and eliminate his major adversaries. Unlike the previous games, this installment takes place in a large outdoor jungle. Snake is able to use camouflage, climb trees, hide in tall grass or wear clothes that make him less noticeable."
+  },
+  {
+    "title": "Journey",
+    "release_date": "Mar 13, 2012",
+    "developers": ["Sony Computer Entertainment", "ThatGameCompany"],
+    "genres": ["Adventure", "Platform"],
+    "description": "A third-person adventure game in which the player, controlling a robed figure, makes a pilgrimage through a desert landscape to a rugged mountain with a beacon of light in the distance while uncovering the history of their people, rescuing and cooperating with friendly creatures, avoiding predatory ones and communicating with other travelers."
+  },
+  {
+    "title": "Kingdom Hearts",
+    "release_date": "Mar 28, 2002",
+    "developers": ["Square", "Disney Interactive Studios"],
+    "genres": ["Adventure", "RPG"],
+    "description": "Kingdom Hearts is an action role-playing game developed and published by Squaresoft for the PlayStation 2. It is the result of a collaboration between Square and The Walt Disney Company. The game combines characters and settings from Disney's animated features with those from the Final Fantasy series, developed by Square."
+  },
+  {
+    "title": "Uncharted: The Lost Legacy",
+    "release_date": "Aug 22, 2017",
+    "developers": ["Naughty Dog", "Sony Interactive Entertainment"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "From the critically acclaimed developer, Naughty Dog, comes the first standalone adventure in the Uncharted series. Fan-favorite character, Chloe Frazer, must enlist the aid of renowned mercenary Nadine Ross from Uncharted 4: A Thief’s End in order to recover a fabled ancient Indian artifact and keep it out of the hands of a ruthless war profiteer. Together, they’ll venture deep into the mountains of India in search of the legendary artifact. Along the way, they’ll learn to work together to unearth the mystery of the artifact, fight their way through fierce opposition, and prevent the region from falling into chaos."
+  },
+  {
+    "title": "Resident Evil 3: Nemesis",
+    "release_date": "Sep 22, 1999",
+    "developers": ["Capcom", "Capcom Planning Room 2"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "Resident Evil 3: Nemesis is a survival horror video game and the third installment in the Resident Evil series. Like its two predecessors, it is a third-person action-adventure game with polygonal characters on pre-rendered backgrounds with cinematic camera angles. Although the game uses the same basic engine and gameplay as the previous games, the gameplay is improved by features such as auto-targeting, a 180 degree spin, and a new dodge move that allows Jill to avoid enemy attacks. The PC and Dreamcast versions includes all eight of Jill's possible costumes, as well as the mercenary mini-game Operation Mad Jackal which allows you to play as one of the three Umbrella soldiers. On the Playstation version, these special features must be unlocked by beating the game with a high score."
+  },
+  {
+    "title": "Sea of Thieves",
+    "release_date": "Mar 20, 2018",
+    "developers": ["Rare", "Xbox Game Studios"],
+    "genres": ["Adventure", "Simulator"],
+    "description": "Sea of Thieves offers the essential pirate experience, from sailing and fighting to exploring and looting – everything you need to live the pirate life and become a legend in your own right. With no set roles, you have complete freedom to approach the world, and other players, however you choose."
+  },
+  {
+    "title": "F.E.A.R.",
+    "release_date": "Oct 17, 2005",
+    "developers": ["Monolith Productions", "Vivendi Universal"],
+    "genres": ["Shooter"],
+    "description": "F.E.A.R. is a horror FPS that resembles a cross between Doom 3, Half-Life, and the Ring horror movies. Demons are replaced by cloned soldiers and the element of horror revolves around an image of a spectral girl always appearing when least expected for a few fleeting moments. The player sets out as a member of a specialized strike force dealing with unknown threats. Initially, the player starts with mundane weapons, which are well presented, and progress gradually towards more sci-fi ones as the danger increases. The player can also call upon a bullet-time ability which slows down time around the player and is realised with impressive visual and aural effects by the game engine."
+  },
+  {
+    "title": "Mafia: Definitive Edition",
+    "release_date": "Sep 24, 2020",
+    "developers": ["2K Games", "Hangar 13"],
+    "genres": ["Adventure", "Shooter"],
+    "description": "Re-made from the ground up, rise through the ranks of the Mafia during the Prohibition era of organized crime. After a run-in with the mob, cab driver Tommy Angelo is thrust into a deadly underworld. Initially uneasy about falling in with the Salieri crime family, Tommy soon finds that the rewards are too big to ignore."
+  },
+  {
+    "title": "NieR",
+    "release_date": "Apr 22, 2010",
+    "developers": ["Square Enix", "Cavia"],
+    "genres": ["Adventure", "RPG", "Shooter", "Simulator", "Strategy"],
+    "description": "Nothing is as it seems in Square Enix's latest action adventure game, set in a crumbling world plagued by disease and dark, unrecognizable creatures. Players assume the role of the unyielding protagonist, NIER, resolute in his quest to discover a cure for his daughter, who is infected with the Black Scrawl virus. With powerful allies and a mysterious book, NIER encounters things that will confound even the mightiest of warriors. With NIER, experience seamless in-battle cinematics and explore hauntingly familiar lands, intense action-packed battles, and storytelling like only Square Enix can do"
+  },
+  {
+    "title": "The Walking Dead: Season Two",
+    "release_date": "Dec 17, 2013",
+    "developers": ["Telltale Games", "Skybound Games"],
+    "genres": ["Adventure", "Point-and-Click", "Puzzle"],
+    "description": "Similar to the previous season, The Walking Dead: Season Two is a point-and-click adventure game. The player, in control of Clementine, can direct the character around the environment, examine and interact with various scenery elements and collect and use objects to advance the story. The player can also initiate conversations with non-player characters via conversation trees. Certain replies from other characters may offer the player multiple choices to select from, including the option to stay silent, with a limited amount of time to make the selection; if the player does not select an option, the conversation will continue as if they had stayed quiet. Such choices can affect how the other characters will later react to Clementine which can influence later events in the story. Other scenes are more action-oriented, requiring the player to complete quick time events to avoid Clementine or her allies from getting killed. If the player fails these events, the game will restart at the start of such scenes. Such action scenes may also require the player to make a key decision within a limited time frame, such as which of two characters to save from attacking walkers."
+  },
+  {
+    "title": "Forspoken",
+    "release_date": "Jan 24, 2023",
+    "developers": ["Square Enix", "Luminous Productions"],
+    "genres": ["Adventure", "RPG"],
+    "description": "Forspoken follows the journey of Frey, a young New Yorker transported to the beautiful and cruel land of Athia. In search of a way home, Frey must use her newfound magical abilities to traverse sprawling landscapes and battle monstrous creatures."
+  },
+  {
+    "title": "Max Payne 2: The Fall of Max Payne",
+    "release_date": "Oct 14, 2003",
+    "developers": ["Remedy Entertainment", "Rockstar Games"],
+    "genres": ["Shooter"],
+    "description": "Max Payne 2 is a third-person shooter, in which the player assumes the role of Max Payne, but also plays as Mona Sax in a few levels. Initially, the player's weapon is a 9mm pistol. As they progress, players access other weapons including other handguns, shotguns, submachine guns, assault rifles, sniper rifles, and hand-thrown weapons. To move the game along, the player is told what the next objective is through Max's internal monologue, in which Max iterates what his next steps should be."
+  },
+  {
+    "title": "Shin Megami Tensei: Devil Summoner - Soul Hackers",
+    "release_date": "Nov 13, 1997",
+    "developers": ["Atlus", "NIS America"],
+    "genres": ["Adventure", "RPG"],
+    "description": "Soul Hackers delivers a first-person, dungeon-crawling RPG experience set in a future where technology and otherworldly forces meet in a macabre fusion of cyberpunk futurism and gothic horror. A first-person sci-fi RPG epic, Soul Hackers tells of a city held up as a beacon of humanity's triumph of technology, but with an infernal secret. In this would-be utopia, a group of hackers takes on a centuries-old mystic society, and a battle for control over humanity's fate is about to begin."
+  }
+]
