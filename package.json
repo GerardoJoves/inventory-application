@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/app.js",
     "type-check": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "build": "tsc && tscp"
   },
   "simple-git-hooks": {
     "pre-commit": "npm run type-check"
@@ -24,6 +25,7 @@
     "simple-git-hooks": "^2.11.1",
     "tsx": "^4.17.0",
     "typescript": "^5.5.4",
+    "typescript-cp": "^0.1.9",
     "typescript-eslint": "^8.2.0"
   },
   "keywords": [],

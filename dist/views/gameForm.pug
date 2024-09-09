@@ -1,0 +1,64 @@
+extends layout.pug
+
+block content
+  main
+    form.styledForm(method='POST')
+      h1.title= title
+      div.formGroup
+        label(for='title') Game Title
+        input(type='text' id='title' name='title' value= values && values.title ? values.title : null)
+        if errors && errors.title
+          small= errors.title.msg
+
+      div.formGroup
+        label Game Genres
+        div.dropdown
+          div.placeholder Select game genres
+          div.gapFiller
+          div.dropdownContent
+            each genre in genres
+              label
+                input(
+                  type='checkbox'
+                  name='genres[]'
+                  value= genre.id
+                  checked= values && values.genres ? values.genres.includes(genre.id) : false
+                )
+                | #{genre.name}
+        if errors && errors.genres
+          small= errors.genres.msg
+
+      div.formGroup
+        label Game Developers
+        div.dropdown
+          div.placeholder Select game developers
+          div.gapFiller
+          div.dropdownContent
+            each dev in developers
+              label
+                input(
+                  type='checkbox'
+                  name='developers[]'
+                  value= dev.id
+                  checked= values && values.developers ? values.developers.includes(dev.id) : false
+                )
+                | #{dev.name}
+        if errors && errors.developers
+          small= errors.developers.msg
+
+      div.formGroup
+        label(for='description') Description
+        textarea(id='description', name='description')= values && values.description ? values.description : null
+        if errors && errors.description
+          small= errors.description.msg
+
+      div.formGroup
+        - const date_YYY_MM_DD = values && values.release_date ? values.release_date.toISOString().slice(0, 10) : null;
+        label(for='release_date') Release Date
+        input(type='date' id='release_date' name='release_date' value=date_YYY_MM_DD)
+        if errors && errors.release_date
+          small= errors.release_date.msg
+
+      div
+        button(type='subimt')= title
+

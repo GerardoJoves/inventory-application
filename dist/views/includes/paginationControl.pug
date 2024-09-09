@@ -1,0 +1,21 @@
+- query && delete query.page
+- const queryStr = '?' + (query ? Object.entries(query).map(([param, val]) => `${param}=${val}&`).join('') : '');
+
+div.paginationControl
+  if curPage > 1
+    a.pageLink(href = queryStr + 'page=1') <<
+    a.pageLink(href= queryStr + `page=${curPage - 1}`) <
+  if curPage === 2
+    a.pageLink(href= queryStr + 'page=1') 1
+  if curPage > 2
+    a.pageLink(href= queryStr + `page=${curPage - 2}`)= curPage - 2
+    a.pageLink(href= queryStr + `page=${curPage - 1}`)= curPage - 1
+  a.pageLink.active= curPage
+  if curPage <= totalPages - 2
+    a.pageLink(href= queryStr + `page=${curPage + 1}`)= curPage + 1
+    a.pageLink(href= queryStr + `page=${curPage + 2}`)= curPage + 2
+  else if curPage === totalPages - 1
+    a.pageLink(href= queryStr + `page=${curPage + 1}`)= curPage + 1
+  if curPage < totalPages
+    a.pageLink(href= queryStr + `page=${curPage + 1}`) >
+    a.pageLink(href= queryStr + `page=${totalPages}`) >>

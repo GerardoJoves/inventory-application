@@ -1,0 +1,15 @@
+extends layout.pug
+
+block content
+  main
+    h1.title Delete Developer: #{developer.name}
+    if gamesCount > 0
+      p 
+        | Developer 
+        a(href=`/developers/${developer.id}/games`)= developer.name
+        |  cannot be deleted since #{gamesCount} games reference it.
+    else
+      p Are you sure you want to delete this developer
+      form(method='POST' action='/developers/delete')
+        input(type='hidden' name='id' value= developer.id)
+        button(type='submit') Confirm

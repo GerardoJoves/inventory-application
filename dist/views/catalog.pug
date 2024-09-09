@@ -1,0 +1,24 @@
+extends layout.pug
+
+block content
+  main
+    div
+      h1.title= title
+      if filter && filter.type === 'genre'
+        div.actions
+          a(href=`/genres/${filter.id}/update`) Edit Genre
+          a(href=`/genres/${filter.id}/delete`) Delete Genre
+      if filter && filter.type === 'developer'
+        div.actions
+          a(href=`/developers/${filter.id}/update`) Edit Developer
+          a(href=`/developers/${filter.id}/delete`) Delete Developer
+    div
+      form(method='GET' action='/games')
+        div.searchContainer
+          input(type='search' name='search' placeholder='Search game')
+          button(type='submit') Search
+    div
+      include includes/gameList.pug
+      if totalPages > 1
+        include includes/paginationControl.pug
+      

@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width' initial-scale=1)
+    link(rel='stylesheet' href='/styles.css' type='text/css')
+
+  body
+    aside.sidebar
+      h1.logo Inventory 
+        span App
+      nav
+        ul
+          li: a(href='/games') Games
+          li: a(href='/developers') Developers
+          li: a(href='/genres') Genres
+          li: a(href='/games/create') Add Game
+          li: a(href='/developers/create') Add Developer
+          li: a(href='/genres/create') Add Genre
+    
+    div.content
+      block content
