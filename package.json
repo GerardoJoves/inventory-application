@@ -10,7 +10,8 @@
     "dev": "tsx watch src/app.js",
     "type-check": "tsc --noEmit",
     "prepare": "simple-git-hooks",
-    "build": "tsc && tscp"
+    "build": "tsc && tscp",
+    "start": "node ./dist/app.js"
   },
   "simple-git-hooks": {
     "pre-commit": "npm run type-check"
